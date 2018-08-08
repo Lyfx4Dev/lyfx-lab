@@ -1,0 +1,84 @@
+<ion-header>
+  <ion-navbar></ion-navbar>
+</ion-header>
+
+<ion-content>
+    <!-- REFRESH -->
+    <ion-refresher (ionRefresh)="refresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+  <div class="padding16">
+    <div class="customPadding">
+      <span class="blue sectionHeader uppercase">My adventures</span>
+
+      <!-- TABS -->
+      <ion-row class="no-pad mg-top-40">
+        <ion-col col-4 class="center caption1" (click)="changeType('all')" [ngClass]="type === 'all' ? 'tabActive': 'tabInactive'">
+          All
+        </ion-col>
+
+        <ion-col col-4 class="center caption1" (click)="changeType('upcoming')" [ngClass]="type === 'upcoming' ? 'tabActive': 'tabInactive'">
+          Upcoming
+        </ion-col>
+
+        <ion-col col-4 class="center caption1" (click)="changeType('completed')" [ngClass]="type === 'completed' ? 'tabActive': 'tabInactive'">
+          Completed
+        </ion-col>
+      </ion-row>
+    </div>
+  </div>
+
+  <!-- ALL -->
+  <div *ngIf="type === 'all'">
+    <div *ngFor="let adventure of adventures">
+      <div class="adventure" (click)="open(adventure)">
+        <ion-card>
+          <img class="bgImg" [src]="adventure.experience.gallery[0].image"
+          />
+          <div class="card-title title3 eggshell limitCharCalendar">{{adventure.experience.title}}</div>
+          <div class="card-subtitle caption2 eggshell">
+                <span class="uppercase">{{ convertDate(adventure.scheduledAt) | amDateFormat:'DD MMM YYYY' }}</span> 
+                <span class="bold"> · </span> 
+                <span style="text-transform: capitalize">{{adventure.status}}</span>
+            </div>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- UPCOMING -->
+  <div *ngIf="type === 'upcoming'">
+    <div *ngFor="let adventure of adventures">
+      <div class="adventure" *ngIf="upcoming(adventure)" (click)="open(adventure)">
+        <ion-card>
+            <img class="bgImg" [src]="adventure.experience.gallery[0].image"
+          />
+          <div class="card-title title3 eggshell limitCharCalendar">{{adventure.experience.title}}</div>
+          <div class="card-subtitle caption2 eggshell">
+                <span class="uppercase">{{ convertDate(adventure.scheduledAt) | amDateFormat:'DD MMM YYYY' }}</span> 
+                <span class="bold"> · </span> 
+                <span style="text-transform: capitalize">{{adventure.status}}</span>
+            </div>
+        </ion-card>
+      </div>
+    </div>
+  </div>
+
+  <!-- COMPLETED -->
+  <div *ngIf="type === 'completed'">
+    <div *ngFor="let adventure of adventures">
+        <div class="adventure" *ngIf="completed(adventure)" (click)="open(adventure)">
+          <ion-card>
+              <img class="bgImg" [src]="adventure.experience.gallery[0].image"
+            />
+            <div class="card-title title3 eggshell limitCharCalendar">{{adventure.experience.title}}</div>
+            <div class="card-subtitle caption2 eggshell">
+                  <span class="uppercase">{{ convertDate(adventure.scheduledAt) | amDateFormat:'DD MMM YYYY' }}</span> 
+                  <span class="bold"> · </span> 
+                  <span style="text-transform: capitalize">{{adventure.status}}</span>
+              </div>
+          </ion-card>
+        </div>
+      </div>
+  </div>
+</ion-content>

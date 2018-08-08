@@ -1,0 +1,56 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+    <div class="editBtn" (click)="save()">
+      <span class="editTxt bold">SAVE</span>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="user">
+
+
+
+    <!-- NAME -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">Name</span>
+      <br>
+      <input type="text" class="inputTxt customInputLight" [(ngModel)]="user.bank.name">
+    </div>
+
+    <!-- ACCOUNT NUMBER -->
+    <div class="mg-top-40">
+      <span class="blue inputLabel uppercase">Account number</span>
+      <br>
+      <input type="number" class="inputTxt customInputLight" [(ngModel)]="user.bank.account_number">
+    </div>
+
+    <!-- ROUTING NUMBER -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">Routing number</span>
+      <br>
+      <input type="number" class="inputTxt customInputLight" [(ngModel)]="user.bank.routing_number">
+    </div>
+
+
+
+
+    <!-- ACCOUNT TYPE -->
+    <div class="mg-top-20">
+        <ion-item class="no-pad">
+            <ion-label class="blue inputLabel uppercase">Account type</ion-label>
+            <ion-select [(ngModel)]="user.bank.type">
+              <ion-option class="customInputLight" value="personal">Personal</ion-option>
+              <ion-option class="customInputLight" value="business">Business</ion-option>
+            </ion-select>
+          </ion-item>
+    </div>
+
+  </div>
+</ion-content>

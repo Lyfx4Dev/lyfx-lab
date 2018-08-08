@@ -1,0 +1,93 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+ 
+  </ion-navbar>
+</ion-header>
+<ion-content padding>
+
+<ion-grid *ngIf="type === 'cancellation'">
+    <!-- Title -->
+    <ion-row>
+      <ion-col col-12>
+        <span class="sectionHeader blue">LYFX CANCELLATION POLICY</span>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-12>
+        <span class="caption2 cinerous">
+            As a Traveler, you may cancel an Experience within 24 hours of
+            booking the Experience and receive a full refund. Any cancellation of an Experience less than 15
+            days prior to the start of the Experience is not eligible for a refund, and you will remain
+            responsible for the full cost of the Experience. In the event of inclement weather or other
+            conditions which render an Experience unsafe or inadvisable, you acknowledge and agree that
+            changes to the Experience may occur, which changes may include without limitation
+            cancellation of the Experience, a change to the itinerary, or a change to the duration of the
+            Experience. In the event of changes which diminish the length and/or scope of the Experience,
+            Lyfx will make reasonable efforts, in collaboration with the Local, to provide a partial refund
+            commensurate with the changes. Notwithstanding the foregoing, Lyfx cannot guarantee a refund
+            or any other form of compensation or specific outcome in such a scenario. To the extent that
+            Lyfx is able to process a refund in accordance with such Experience terms, we will do so in
+            accordance with these Terms of Use. All payments made on the Service, including without
+            limitation refunds, will be subject to the disclosures, rights, limitations, and obligations set forth
+            in these Terms of Use.
+        </span>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+<ion-grid *ngIf="type === 'terms'">
+  <!-- Title -->
+  <ion-row>
+    <ion-col col-12>
+      <span class="sectionHeader blue">LYFX TERMS OF USE AGREEMENT</span>
+    </ion-col>
+  </ion-row>
+  <ion-row>
+    <ion-col col-12>
+      <span class="caption2 cinerous">
+          Welcome to Lyfx, located at 1450 2nd St., Santa Monica, CA 90401 (&quot;Lyfx,&quot;
+          &quot;we,&quot; or &quot;our&quot;).
+          By using the website located at www.lyfx.co, the related mobile website, and the mobile
+          application called Lyfx (the “App”) (collectively, the “Websites”), you agree to be bound
+          by these Terms of Use (this “Terms of Use” or “Agreement”), whether or not you register
+          as a member of Lyfx (&quot;Member&quot;). If you wish to become a Member and/or make use of
+          the service (the “Service”), please read this Agreement. If you object to anything in this
+          Agreement or the Lyfx Privacy Policy, do not use the Service.
+          PLEASE READ THIS AGREEMENT CAREFULLY AS IT CONTAINS IMPORTANT
+          INFORMATION REGARDING YOUR LEGAL RIGHTS, REMEDIES AND
+          OBLIGATIONS, INCLUDING VARIOUS LIMITATIONS AND EXCLUSIONS, AND
+          A DISPUTE RESOLUTION CLAUSE THAT GOVERNS HOW DISPUTES WILL BE
+          RESOLVED.
+          1. Electronic Agreement. This Terms of Use is an electronic contract that sets out the
+          legally binding terms of your use of the Service. This Terms of Use is subject to change
+          by Lyfx at any time, effective upon posting on the Lyfx Websites. By accessing and/or
+          using the Service or becoming a Member, you accept this Terms of Use and agree to the
+          terms, conditions and notices contained or referenced herein. Your continued use of the
+          Service following Lyfx’s posting of revised terms of any section of the Terms of Use will
+          constitute your express and binding acceptance of and consent to the revised Terms of
+          Use.
+          2. Access and Retention. In order to access and retain this electronic Agreement, you
+          must have access to the World Wide Web, either directly or through devices that access
+          web-based content, and pay any service fees associated with such access. In addition, you
+          must use all equipment necessary to make such connection to the World Wide Web,
+          including a computer and modem or other access device. Please print a copy of this
+          document for your records. To retain an electronic copy of this Agreement, you may save
+          it into any word processing program.
+          3. Eligibility. You must be at least eighteen (18) years of age. By using the Service, you
+          represent and warrant that you have the right, authority and capacity to enter into this
+          Agreement and to abide by all of the terms and conditions of this Agreement.
+          The Service is also not available to any users of the Websites or Service (the “Users”)
+          who have been previously removed or suspended from the Service.
+          By using the Service, you represent and warrant that you have the right, authority and
+          capacity to enter into this Terms of Use and to abide by all of the terms and conditions of
+          this Terms of Use.
+      </span>
+    </ion-col>
+  </ion-row>
+</ion-grid>
+</ion-content>

@@ -1,0 +1,88 @@
+<ion-header>
+  <ion-navbar></ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- REFRESH -->
+  <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div padding-horizontal>
+    <div class="customPadding" *ngIf="user">
+      <div class="sectionTop">
+        <!-- AVATAR -->
+        <img [src]="user.avatar" class="userAvatar" tappable (click)="profileDetails()">
+
+        <!-- NAME -->
+        <span class="blue title2 userName">{{user.firstName}} {{user.lastName}}</span>
+        <span class="blue bodyCopy1 viewEdit" tappable (click)="profileDetails()">View and edit profile</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ITEMS -->
+  <ion-list class="mg-top-20" *ngIf="user">
+    <!-- SAVED ADVENTURES -->
+    <ion-item (click)="saved()">
+      <span class="open blue bodyCopy1">Saved adventures</span>
+      <ion-icon class="blue" name="ios-heart-outline" item-end></ion-icon>
+    </ion-item>
+
+
+    <!-- BE A LOCAL -->
+    <ion-item class="botBorder" *ngIf="!local" (click)="toLocal()">
+      <span class="open blue bodyCopy1">Become a local</span>
+      <ion-icon class="blue" name="ios-person-add-outline" item-end></ion-icon>
+    </ion-item>
+
+    <!-- LOCAL INFO -->
+    <ion-item class="botBorder" *ngIf="local" (click)="toLocal()">
+      <span class="open blue bodyCopy1">Local expert info</span>
+      <ion-icon class="blue" name="ios-person-add-outline" item-end></ion-icon>
+    </ion-item>
+
+    <!-- SWITCH TO LOCAL -->
+    <ion-item class="botBorder" *ngIf="local" (click)="switch()">
+      <span class="open blue bodyCopy1">Switch to {{type}}</span>
+      <ion-icon class="blue" name="ios-repeat-outline" item-end></ion-icon>
+    </ion-item>
+
+    <!-- BANK INFO -->
+    <ion-item class="botBorder" *ngIf="local" (click)="bank()">
+      <span class="open blue bodyCopy1">Bank info</span>
+      <ion-icon class="blue" name="ios-information" item-end></ion-icon>
+    </ion-item>
+
+    <!-- share invitation -->
+    <ion-item class="botBorder" (click)="share()">
+      <span class="open blue bodyCopy1">Share invitation</span>
+      <ion-icon class="blue" name="ios-share-alt" item-end></ion-icon>
+    </ion-item>
+
+
+    <!-- REQUEST REVIEW -->
+    <ion-item class="botBorder" *ngIf="local" (click)="requestReview()">
+      <span class="open blue bodyCopy1">Request review</span>
+      <ion-icon class="blue" name="ios-share" item-end></ion-icon>
+    </ion-item>
+
+    <!-- PAYMENT METHODS -->
+    <ion-item class="botBorder" (click)="payments()">
+      <span class="open blue bodyCopy1">Payment methods</span>
+      <ion-icon class="blue" name="ios-card" item-end></ion-icon>
+    </ion-item>
+
+    <!-- CONTACT US -->
+    <!-- <ion-item class="botBorder" (click)="contactUs()">
+      <span class="open blue bodyCopy1">Contact us</span>
+      <ion-icon class="blue" name="ios-mail-outline" item-end></ion-icon>
+    </ion-item> -->
+
+    <!-- LOGOUT -->
+    <ion-item class="botBorder" (click)="logout()">
+      <span class="open blue bodyCopy1">Logout</span>
+      <ion-icon class="blue" name="ios-arrow-forward-outline" item-end></ion-icon>
+    </ion-item>
+  </ion-list>
+</ion-content>

@@ -1,0 +1,314 @@
+
+
+page-explore {  
+    //Tags
+    .customPaddingTags {
+        margin-left: 10px;
+        margin-right: 11px
+    }
+    .containerTags {
+        overflow-x: scroll;
+        overflow-y: hidden;
+        white-space: nowrap;
+        height: 45px
+    }
+    .slideRowState {
+        overflow-x: scroll;
+        white-space: nowrap;
+        padding: 10px;
+        height: 260px;
+        overflow-y: hidden
+    }
+    .slideRow {
+        overflow-x: scroll;
+        white-space: nowrap;
+        padding: 10px;
+        height: 330px;
+        overflow-y: hidden
+    }
+        //State card
+        .stateCard {
+            box-shadow: none;
+            height: 200px;
+            width: 100%;
+            border-radius: 4px;
+            background-color: $blue;
+            border-color: transparent !important;
+            background-position: center center;
+            margin: 0px;
+            background-size: cover;
+        }
+    
+    
+        .divCol {
+            width: 35% !important;
+            max-width: 35% !important;
+            display: inline-block
+        }
+    
+    .tag {
+        border-radius: 3.5px;
+        color: $cinerous;
+        border-color: $cinerous;
+        font-size: 12px;
+        display: inline-block;
+        border: 1px solid; 
+        padding: 5px 10px
+    }
+
+    .headerCustomSize {
+        font-size: 20px;
+        font-weight: 300
+    }
+    
+    .viewMore {
+        border: 1px solid $blue;
+        border-radius: 5px;
+        padding: 5px 20px;
+        width: 100px;
+        text-align: center;
+        color: $blue;
+        display: inline-block;
+        position: relative;
+        top: -165px;
+        margin-left: 20px
+    }
+
+    //Hide spinner
+    .infinite-loading-spinner {
+        display: none
+    }
+
+    .titleLabel {
+        font-size: 13px;
+        font-weight: 700;
+    }
+    .titleLabelSize11 {
+        font-size: 11px;
+        font-weight: 700;
+    }
+    .locationLabel {
+        font-weight: 600;
+        font-size: 11px
+    }
+    .priceLabel {
+        font-weight: 300;
+        font-size: 10px
+    }
+    .starIcon {
+        width: 9px
+    }
+    .mg--2 {
+        margin-left: -1px;
+    }
+    .specialChar {
+        margin-left: 1px;
+        position: relative;
+        top: 1.5px
+    }
+    .categorieLabel {
+        margin-left: -1px;
+        font-size: 9px;
+        font-weight: 300
+    }
+
+    //Text over categorie
+    div.wrapper2{
+        float:left; 
+        position:relative; 
+        height: 100px;
+        width: 100%;
+    }
+    .overlay {
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        height: 100px;
+        width: 100%;
+        opacity:0.4; 
+        // filter:alpha(opacity=60);
+        transition: .5s ease;
+        background-color: #000;
+    }
+    .cat {
+        position:absolute; 
+        width:100%;
+        height: 100%;
+        height: 25px;
+        top: calc(50px - 11pt);
+        text-align: center;
+        z-index: 2
+    }
+    .categorieTitle {
+        color: #fff;
+        font-weight: 700
+    }
+    .customMgRow {
+        margin-top: -10px
+    }
+
+    .lyfxPicks {
+        padding: 10px;
+        background: linear-gradient(to bottom right, #997d7c, #103454);
+    }
+
+    .showAllBtn {
+        padding: 5px;
+        border: 1px solid $blue;
+        color: $blue;
+        border-radius: 5px;
+        text-align: center;
+        margin-top: 20px
+    }
+
+
+
+    //Adventure card
+    .adventureCard {
+        box-shadow: none;
+        height: 120px;
+        width: 100%;
+        border-radius: 4px;
+        background-color: $blue;
+        border-color: transparent !important;
+        background-position: center center;
+        margin: 0px;
+        background-size: cover;
+    }
+    .categorieCard {
+        box-shadow: none;
+        height: 85px;
+        width: 100%;
+        border-radius: 4px;
+        background-color: $blue;
+        border-color: transparent !important;
+        background-position: center center;
+        margin: 0px;
+        background-size: cover;
+    }
+      .adventureCardLarge {
+        box-shadow: none;
+        height: 350px;
+        width: 100%;
+        border-radius: 4px;
+        background-color: $blue;
+        border-color: transparent !important;
+        background-position: center center;
+        margin: 0px;
+        background-size: cover;
+    }
+
+    //Star fill
+    .fill {
+        color: $cinerous;
+    }
+    .border-fill {
+        color: $cinerous;
+        opacity: 0.2;
+    }
+
+    //Btn
+    .btnShowAll {
+        width: 100%;
+        border-radius: 5px;
+        padding: 5px 0px;
+        border: 1px solid $blue;
+        font-weight: 700;
+        text-transform: uppercase;
+        color: $blue;
+        text-align: center
+    }
+
+
+    //Custom width for col 5
+    [col-5] {
+        width: 48.5% !important;
+        max-width: 100%;
+        flex: 0 0 47.5%;
+    }
+
+    //Small device
+    @media (max-width: 400px)  { 
+    //Text over adventure
+    div.wrapper{
+        float:left; 
+        position:relative; 
+        height: 100px;
+        width: 100%;
+    }
+    div.origin{
+        padding-bottom: 23px;
+        position:absolute; 
+        bottom:0px; 
+        left:0px;
+        width: 100%;
+        height: 37px;
+        background: linear-gradient(to top, #000, transparent);
+        color:white;
+        transition: .5s ease;
+    }
+
+    //Text over categorie
+    div.wrapper2{
+        height: 85px;
+    }
+    .overlay {
+        height:85px;
+    }
+    .cat {
+        top: calc(50px - 16pt);
+    }
+
+    //Adventure card
+    .adventureCard {
+        height: 85px;
+    }
+
+    }
+
+    // FOOTER
+    .footer-md::before {
+        top:0
+    }
+     //Padding toolbar
+     .pad-tool {
+        padding: 10px !important
+    }
+    .pad-5 {
+        padding: 0px 10px 0px 10px
+    }
+      .header-ios .toolbar-ios:last-child .toolbar-background-ios {
+        border-width: 0px
+    }
+    .toolbar-background-md {
+        background-color: #eadfd6
+    }
+    .toolbar-background-ios {
+        background-color: #eadfd6
+    }
+    .footer1 {
+        border: 1px solid #184164;
+        border-radius: 4px;
+    }
+    .pad-row {
+        padding-left: 0px;
+        padding-right: 0px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+    }
+    .text-input-ios {
+        margin: 5px !important
+    }
+    .text-input-md {
+        margin: 5px !important
+    }
+    .footer-ios .toolbar-background-ios {
+        border: none
+    }
+    .footer-md .toolbar-background-md {
+        border: none
+    }
+
+}

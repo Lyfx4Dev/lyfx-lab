@@ -1,0 +1,100 @@
+page-add-review {
+    // TOP BUTTONS
+    .backBtn {
+        position: absolute;
+        top: 30px;
+        left: 20px;
+        z-index: 10;
+        color: $eggshell
+    }
+    .iconBack {
+        font-size: 24pt
+    }
+    .backTxt{
+        position: relative;
+        top: -5pt;
+        left: 5px
+    }
+    .editBtn {
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        z-index: 10;
+        color: $eggshell
+    }
+    .editTxt {
+        position: relative;
+        top: 5pt;
+        right: 5px
+    }
+    ion-navbar {
+        height: 80px !important;
+        background: $blue 
+    }
+
+    .range-ios {
+        padding: 0px;
+    }
+
+    .range-md {
+        padding: 0px
+    }
+
+    .userAvatar {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        border: 1.5px solid $cinerous;
+    }
+
+    // BACKGROUND
+    .scroll-content {
+        background: rgba(152,125,124,1) !important;
+        background: linear-gradient(124.7deg, rgba(152,125,124,1) 6%, rgba(152,125,124,1) 19%, rgba(128,107,106,1) 42%, rgba(15,53,84,1) 100%) !important;
+    }
+
+    // STAR RATING
+    ul {
+        padding: 0px;
+        
+        &.rating li {
+            padding: 5px 10px !important;
+            background: none;
+            color: #aa9c5a;
+        
+            ion-icon {
+                font-size: 5rem;
+            }
+        }
+    }
+
+    // BUTTON FAB
+    .lightFab {
+        background-color: $blue;
+        border: 1px solid color($colors, light);
+    }
+
+    // CUSTOM TEXTAREA
+    .customTextarea {
+        border: 1px solid color($colors, light);
+        color: color($colors, light);
+        padding: 5px;
+    }
+
+    // GRID OF CLASSIFICATION BY ICONS
+    .rating-grid {
+        border: 1px solid color($colors, light);
+
+        .row {
+            border: 1px solid color($colors, light);
+
+            .col {
+                border: 1px solid color($colors, light);
+                
+                img {
+                    width: 30%;
+                }
+            }
+        }
+    }
+}

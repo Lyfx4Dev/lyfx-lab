@@ -1,0 +1,170 @@
+<!-- <ion-header>
+  <ion-navbar>
+    BTNS
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+    <div class="editBtn" (click)="createReview()">
+      <span class="editTxt bold">SAVE</span>
+    </div>
+  </ion-navbar>
+</ion-header> -->
+
+
+<ion-content padding>
+  <!-- <ion-toolbar>
+    <div class="mg-top-40">
+      <h3 ion-text color="light">THANKS FOR USING LYFX :)</h3>
+    </div>
+    <div class="mg-top-60">
+      <h3 ion-text color="light">HOW WAS YOUR ADVENTURE WITH <b text-uppercase>{{user?.firstName}}</b> ?</h3>
+    </div>
+  </ion-toolbar>
+  <div>
+    <!-- PUBLIC -->
+    <!-- <div class="mg-top-20"> -->
+        <!-- <span class="cinerous inputLabel uppercase">Your message will be public.</span> -->
+        <!-- <img [src]="user?.avatar" class="userAvatar"> -->
+    <!-- </div> -->
+
+    <!-- MESSAGE -->
+    <!-- <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">Message</span>
+      <br>
+      <textarea type="text" class="inputTxt customInputLight" [(ngModel)]="message"></textarea>
+    </div> -->
+
+    <!-- RATING -->
+    <!-- <div class="mg-top-20">
+      <rating [(ngModel)]="rating"></rating>
+    </div>
+  </div> -->
+  <ion-fab bottom right>
+    <button class="lightFab" ion-fab outline (click)="next()" *ngIf="step < 3">
+      <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <!-- STEP 1 -->
+  <div *ngIf="step === 1">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="mg-top-20">
+            <h4 ion-text color="light">THANKS FOR USING LYFX :)</h4>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="mg-top-20">
+            <h4 ion-text color="light">HOW WAS YOUR ADVENTURE WITH <b text-uppercase>{{owner?.firstName}}</b> ?</h4>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row justify-content-center>
+        <div class="mg-top-10">
+          <img [src]="owner?.avatar || 'https://firebasestorage.googleapis.com/v0/b/lyfx-cab40.appspot.com/o/Images%2FProfile%2Fdefault-user.png?alt=media&token=48b4dae0-6611-4665-ba5d-3aeb2e19108b'" class="userAvatar">
+        </div>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="mg-top-20">
+            <rating [(ngModel)]="rating"></rating>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <p ion-text text-center color="light">TELL US ABOUT YOUR EXPERIENCE</p>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <textarea type="text" rows="6" class="inputTxt customInputLight customTextarea" [(ngModel)]="message"></textarea>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- STEP 2 (if rating < 4) -->
+  <div *ngIf="step === 2">
+    <ion-grid>
+      <ion-row>
+        <ion-col>
+          <div class="mg-top-20">
+            <h4 ion-text color="light"><b>WE’RE SORRY TO HEAR THAT.</b></h4>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <div class="mg-top-20">
+            <h4 ion-text color="light">TELL US HOW <b text-uppercase>{{owner?.firstName}}</b> PERFORMED ON:</h4>
+          </div>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-grid class="rating-grid" margin-top no-padding>
+          <ion-row padding-top align-items-center justify-content-center>
+            <h3 ion-text color="light">SAFETY</h3>
+          </ion-row>
+          <ion-row>
+            <ion-col text-center>
+              <img [src]="iconsRating.safety == 0 ? 'assets/imgs/sad-light-icon.png' : 'assets/imgs/sad-icon.png'" margin (click)="iconsRating.safety = 0">
+            </ion-col>
+            <ion-col text-center>
+              <img [src]="iconsRating.safety == 1 ? 'assets/imgs/happy-light-icon.png' : 'assets/imgs/happy-icon.png'" margin (click)="iconsRating.safety = 1">
+            </ion-col>
+          </ion-row>
+          <ion-row padding-top align-items-center justify-content-center>
+            <h3 ion-text color="light">LOCAL KNOWLEDGE</h3>
+          </ion-row>
+          <ion-row>
+            <ion-col text-center>
+              <img [src]="iconsRating.localKnowledge == 0 ? 'assets/imgs/sad-light-icon.png' : 'assets/imgs/sad-icon.png'" margin (click)="iconsRating.localKnowledge = 0">
+            </ion-col>
+            <ion-col text-center>
+              <img [src]="iconsRating.localKnowledge == 1 ? 'assets/imgs/happy-light-icon.png' : 'assets/imgs/happy-icon.png'" margin (click)="iconsRating.localKnowledge = 1">
+            </ion-col>
+          </ion-row>
+          <ion-row padding-top align-items-center justify-content-center>
+            <h3 ion-text color="light">COST</h3>
+          </ion-row>
+          <ion-row>
+            <ion-col text-center>
+              <img [src]="iconsRating.cost == 0 ? 'assets/imgs/sad-light-icon.png' : 'assets/imgs/sad-icon.png'" margin (click)="iconsRating.cost = 0">
+            </ion-col>
+            <ion-col text-center>
+              <img [src]="iconsRating.cost == 1 ? 'assets/imgs/happy-light-icon.png' : 'assets/imgs/happy-icon.png'" margin (click)="iconsRating.cost = 1">
+            </ion-col>
+          </ion-row>
+          <ion-row padding-top align-items-center justify-content-center>
+            <h3 ion-text color="light">PUNCTUALITY</h3>
+          </ion-row>
+          <ion-row>
+            <ion-col text-center>
+              <img [src]="iconsRating.punctuality == 0 ? 'assets/imgs/sad-light-icon.png' : 'assets/imgs/sad-icon.png'" margin (click)="iconsRating.punctuality = 0">
+            </ion-col>
+            <ion-col text-center>
+              <img [src]="iconsRating.punctuality == 1 ? 'assets/imgs/happy-light-icon.png' : 'assets/imgs/happy-icon.png'" margin (click)="iconsRating.punctuality = 1">
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </ion-row>
+    </ion-grid>
+  </div>
+
+  <!-- STEP 3 -->
+  <div *ngIf="step === 3">
+    <ion-grid style="height: 100vh">
+      <ion-row justify-content-center align-items-center style="height: 100%">
+        <div text-center>
+          <img src="assets/imgs/feedback-review-icon.png" width="30%">
+          <h1 ion-text color="light">THANK YOU FOR<br> YOUR FEEDBACK</h1>
+        </div>
+      </ion-row>
+    </ion-grid>
+  </div>
+</ion-content>

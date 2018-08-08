@@ -1,0 +1,770 @@
+<ion-header>
+  <ion-navbar></ion-navbar>
+</ion-header>
+
+<ion-content>
+  <!-- LOTTIE ANIMATION LOADING -->
+  <div style="margin-top: 70%" *ngIf="!loadingComplete">
+    <lottie-animation-view [options]="lottieConfig" [width]="70" [height]="70">
+    </lottie-animation-view>
+  </div>
+
+  <div *ngIf="loadingComplete">
+    <div padding class="pad-bot-0">
+      <!-- SEARCH BAR -->
+      <ion-toolbar class="pad-tool" *ngIf="adventures.length > 0">
+        <div class="footer1 pad-5">
+          <ion-grid style="padding: 0px !important">
+            <ion-row>
+              <ion-col col-1 class="pad-0">
+                <ion-icon style="margin-top: 5px" name="search" class="gray send"></ion-icon>
+              </ion-col>
+
+              <ion-col col-11 class="pad-0">
+                <form (ngSubmit)="search()">
+                  <ion-input clearInput type="text" [(ngModel)]="inp" name="inp" class="blue" placeholder="Try Colorado or Hiking"></ion-input>
+                </form>
+              </ion-col>
+            </ion-row>
+          </ion-grid>
+        </div>
+      </ion-toolbar>
+
+      <!-- TAGS -->
+      <div class="containerTags customPaddingTags" *ngIf="step === 0">
+        <div class="tag uppercase" *ngFor="let tag of tags; let i = index" [ngClass]="i > 0 ? 'mg-left-10' : ''" (click)="openFilter(tag.name)">
+          {{tag.name}}
+        </div>
+      </div>
+      <div class="containerTags customPaddingTags" *ngIf="step != 0">
+        <div class="tag uppercase" (click)="clear()">
+          <ion-icon name="ios-close-circle" style="margin-right: 5px"></ion-icon>
+          Back
+        </div>
+        <div *ngIf="filter1Title" class="tag uppercase mg-left-10">
+          {{filter1Title}}
+        </div>
+        <div *ngIf="filter2Title" class="tag uppercase mg-left-10">
+          {{filter2Title}}
+        </div>
+        <div *ngIf="filter3Title" class="tag uppercase mg-left-10">
+          {{filter3Title}}
+        </div>
+      </div>
+
+    </div>
+    <div *ngIf="step === 0">
+      <div padding class="pad-top-0">
+        <!-- HEADER -->
+        <div class="customPadding mg-top-10" *ngIf="adventures.length > 0">
+          <!-- <span class="blue sectionHeader uppercase">{{header}}</span> -->
+          <span class="headerCustomSize blue uppercase">EXPLORE LYFX</span>
+
+        </div>
+
+        <!-- SECTION - STATES -->
+        <!-- CARDS -->
+        <div class="nowrap slideRowState">
+          <div (click)="filter3(state)" id="card" *ngFor="let state of states; let i = index" class="mg-top-10 divCol" [ngClass]="i > 0 ? 'mg-custom-left' : ''">
+            <ion-card class="stateCard" [ngStyle]="{ 'background-image': 'url(' + state.adventure.gallery[0].image + ')'}">
+            </ion-card>
+            <!-- LOCATION -->
+            <!-- <div class="mg-top-5">
+          <p class="uppercase locationLabel cinerous mg-top-0 mg-bot-0 dispInline" style="overflow: hidden;">
+            {{adventure.adventures}} ·
+          </p>
+          <p class="locationLabel uppercase blue oneLineTxt mg-top-0 mg-bot-0 dispInline">
+            {{adventure.destinyCity}} - {{adventure.destinyState}}
+          </p>
+        </div> -->
+
+            <p class="titleLabel blue uppercase mg-bot-0 twoLinesTxt mg-top-10">
+              {{state.state}}
+            </p>
+
+
+            <!-- PRICE -->
+            <!-- <p class="priceLabel cinerous mg-top-2 mg-bot-0">
+          ${{formatPrice(adventure.price)}} p/ person
+        </p> -->
+
+            <!-- IF 0 RATINGS -->
+            <!-- <div class="mg-top--3" *ngIf="!adventure.score">
+          <span>
+            <span>
+              <img class="starIcon" src="assets/imgs/star-outline.png">
+            </span>
+            <span class="mg--2">
+              <img class="starIcon" src="assets/imgs/star-outline.png">
+            </span>
+            <span class="mg--2">
+              <img class="starIcon" src="assets/imgs/star-outline.png">
+            </span>
+            <span class="mg--2">
+              <img class="starIcon" src="assets/imgs/star-outline.png">
+            </span>
+            <span class="mg--2">
+              <img class="starIcon" src="assets/imgs/star-outline.png">
+            </span>
+          </span>
+          <span class="blue specialChar">
+            ·
+          </span>
+          <span class="blue uppercase categorieLabel">
+            New adventure
+          </span>
+        </div> -->
+          </div>
+        </div>
+      </div>
+
+
+      <!-- LYFX PICKS -->
+      <div class="lyfxPicks">
+
+        <!-- HEADER -->
+        <div class="customPadding10 mg-top-10" *ngIf="adventures.length > 0">
+          <span class="headerCustomSize white uppercase">LYFX PICKS</span>
+        </div>
+
+        <!-- CARDS -->
+        <div class="nowrap slideRow">
+          <div (click)="openAdventure(adventure)" id="card" *ngFor="let adventure of adventures; let i = index" class="mg-top-10 divCol"
+            [ngClass]="i > 0 ? 'mg-custom-left' : ''">
+            <ion-card class="stateCard" [ngStyle]="{ 'background-image': 'url(' + adventure.gallery[0].image + ')'}">
+            </ion-card>
+            <!-- LOCATION -->
+            <div class="mg-top-5">
+              <p class="uppercase locationLabel yellow mg-top-0 mg-bot-0" style="overflow: hidden;">
+                {{adventure.adventures}}
+              </p>
+              <p class="locationLabel uppercase yellow oneLineTxt mg-top--2 mg-bot-0">
+                {{adventure.destinyCity}} - {{adventure.destinyState}}
+              </p>
+            </div>
+
+            <div style="white-space: initial">
+              <p class="titleLabelSize11 white capitalize mg-bot-0 twoLinesTxt mg-top-3">
+                {{adventure.title}}
+              </p>
+            </div>
+
+
+            <!-- PRICE -->
+            <p class="priceLabel white mg-top-2 mg-bot-0">
+              ${{formatPrice(adventure.price)}} p/ person
+            </p>
+
+            <!-- IF 0 RATINGS -->
+            <div class="mg-top--3" *ngIf="!adventure.score">
+              <span>
+                <span>
+                  <img class="starIcon" src="assets/imgs/star.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star-outline.png">
+                </span>
+              </span>
+              <!-- <span class="blue specialChar">
+            ·
+          </span>
+          <span class="blue uppercase categorieLabel">
+            New adventure
+          </span> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div padding>
+        <!-- HIKING -->
+        <!-- HEADER -->
+        <div class="customPadding10 mg-top-10" *ngIf="adventures.length > 0">
+          <span class="headerCustomSize blue uppercase">HIKING</span>
+        </div>
+
+        <!-- CARDS -->
+        <div class="nowrap slideRow">
+          <div (click)="openAdventure(adventure)" id="card" *ngFor="let adventure of hikings; let i = index" class="mg-top-10 divCol"
+            [ngClass]="i > 0 ? 'mg-custom-left' : ''">
+            <ion-card class="stateCard" [ngStyle]="{ 'background-image': 'url(' + adventure.gallery[0].image + ')'}">
+            </ion-card>
+            <!-- LOCATION -->
+            <div class="mg-top-5">
+              <p class="uppercase locationLabel blue mg-top-0 mg-bot-0" style="overflow: hidden;">
+                {{adventure.adventures}}
+              </p>
+              <p class="locationLabel uppercase blue oneLineTxt mg-top--2 mg-bot-0">
+                {{adventure.destinyCity}} - {{adventure.destinyState}}
+              </p>
+            </div>
+
+            <div style="white-space: initial">
+              <p class="titleLabelSize11 blue capitalize mg-bot-0 twoLinesTxt mg-top-3">
+                {{adventure.title}}
+              </p>
+            </div>
+
+
+            <!-- PRICE -->
+            <p class="priceLabel blue mg-top-2 mg-bot-0">
+              ${{formatPrice(adventure.price)}} p/ person
+            </p>
+
+            <!-- IF 0 RATINGS -->
+            <div class="mg-top--3" *ngIf="!adventure.score">
+              <span>
+                <span>
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2-outline.png">
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="viewMore" (click)="viewAll('hiking')">
+            VIEW
+            <br> MORE
+          </div>
+        </div>
+
+        <!-- RUNNING -->
+        <!-- HEADER -->
+        <div class="customPadding10 mg-top-10" *ngIf="adventures.length > 0">
+          <span class="headerCustomSize blue uppercase">RUNNING</span>
+        </div>
+
+        <!-- CARDS -->
+        <div class="nowrap slideRow">
+          <div (click)="openAdventure(adventure)" id="card" *ngFor="let adventure of runnings; let i = index" class="mg-top-10 divCol"
+            [ngClass]="i > 0 ? 'mg-custom-left' : ''">
+            <ion-card class="stateCard" [ngStyle]="{ 'background-image': 'url(' + adventure.gallery[0].image + ')'}">
+            </ion-card>
+            <!-- LOCATION -->
+            <div class="mg-top-5">
+              <p class="uppercase locationLabel blue mg-top-0 mg-bot-0" style="overflow: hidden;">
+                {{adventure.adventures}}
+              </p>
+              <p class="locationLabel uppercase blue oneLineTxt mg-top--2 mg-bot-0">
+                {{adventure.destinyCity}} - {{adventure.destinyState}}
+              </p>
+            </div>
+
+            <div style="white-space: initial">
+              <p class="titleLabelSize11 blue capitalize mg-bot-0 twoLinesTxt mg-top-3">
+                {{adventure.title}}
+              </p>
+            </div>
+
+
+            <!-- PRICE -->
+            <p class="priceLabel blue mg-top-2 mg-bot-0">
+              ${{formatPrice(adventure.price)}} p/ person
+            </p>
+
+            <!-- IF 0 RATINGS -->
+            <div class="mg-top--3" *ngIf="!adventure.score">
+              <span>
+                <span>
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2-outline.png">
+                </span>
+              </span>
+            </div>
+          </div>
+
+
+          <div class="viewMore" (click)="viewAll('running')">
+            VIEW
+            <br> MORE
+          </div>
+        </div>
+
+        <!-- CYCLING -->
+        <!-- HEADER -->
+        <div class="customPadding10 mg-top-10" *ngIf="adventures.length > 0">
+          <span class="headerCustomSize blue uppercase">CICLYNG</span>
+        </div>
+
+        <!-- CARDS -->
+        <div class="nowrap slideRow">
+          <div (click)="openAdventure(adventure)" id="card" *ngFor="let adventure of cycling; let i = index" class="mg-top-10 divCol"
+            [ngClass]="i > 0 ? 'mg-custom-left' : ''">
+            <ion-card class="stateCard" [ngStyle]="{ 'background-image': 'url(' + adventure.gallery[0].image + ')'}">
+            </ion-card>
+            <!-- LOCATION -->
+            <div class="mg-top-5">
+              <p class="uppercase locationLabel blue mg-top-0 mg-bot-0" style="overflow: hidden;">
+                {{adventure.adventures}}
+              </p>
+              <p class="locationLabel uppercase blue oneLineTxt mg-top--2 mg-bot-0">
+                {{adventure.destinyCity}} - {{adventure.destinyState}}
+              </p>
+            </div>
+
+            <div style="white-space: initial">
+              <p class="titleLabelSize11 blue capitalize mg-bot-0 twoLinesTxt mg-top-3">
+                {{adventure.title}}
+              </p>
+            </div>
+
+
+            <!-- PRICE -->
+            <p class="priceLabel blue mg-top-2 mg-bot-0">
+              ${{formatPrice(adventure.price)}} p/ person
+            </p>
+
+            <!-- IF 0 RATINGS -->
+            <div class="mg-top--3" *ngIf="!adventure.score">
+              <span>
+                <span>
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2-outline.png">
+                </span>
+              </span>
+            </div>
+          </div>
+
+
+          <div class="viewMore" (click)="viewAll('cycling')">
+            VIEW
+            <br> MORE
+          </div>
+        </div>
+
+        <!-- HEADER -->
+        <div class="customPadding10 mg-top-10" *ngIf="adventures.length > 0">
+          <span class="headerCustomSize blue uppercase">EXPLORE ADVENTURES</span>
+        </div>
+        <!-- CATEGORIES -->
+        <ion-grid id="container"  *ngIf="!showAllCategories">
+          <ion-row>
+            <ion-col (click)="viewAll(categorie.name)" col-5 id="card" *ngFor="let categorie of categories | slice:0:4; let i = index"
+              class="mg-top-10" [ngClass]="i%2 === 0 ? '' : 'mg-left-5-percent'">
+              <ion-card class="categorieCard" [ngStyle]="{ 'background-image': 'url(' + categorie.cover + ')'}">
+                <div class="wrapper2">
+                  <div class='cat'>
+                    <p class='categorieTitle capitalize title3'>{{categorie.name}}</p>
+                  </div>
+                  <div class="overlay"></div>
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-grid col-12>
+              <div class="showAllBtn" (click)="showCat()">SHOW ALL ({{categories.length}})</div>
+            </ion-grid>
+          </ion-row>
+        </ion-grid>
+        <ion-grid id="container" *ngIf="showAllCategories">
+          <ion-row>
+            <ion-col (click)="viewAll(categorie.name)" col-5 id="card" *ngFor="let categorie of categories; let i = index" class="mg-top-10"
+              [ngClass]="i%2 === 0 ? '' : 'mg-left-5-percent'">
+              <ion-card class="categorieCard" [ngStyle]="{ 'background-image': 'url(' + categorie.cover + ')'}">
+                <div class="wrapper2">
+                  <div class='cat'>
+                    <p class='categorieTitle capitalize title3'>{{categorie.name}}</p>
+                  </div>
+                  <div class="overlay"></div>
+                </div>
+              </ion-card>
+            </ion-col>
+          </ion-row>
+
+          <ion-row>
+            <ion-grid col-12>
+              <div class="showAllBtn" (click)="showLessCat()">SHOW LESS</div>
+            </ion-grid>
+          </ion-row>
+        </ion-grid>
+
+
+      </div>
+    </div>
+
+    <!-- ***************************/////////// FILTER 1 ///////////*************************** -->
+    <div *ngIf="step === 1">
+      <div padding class="pad-bot-0">
+        <!-- HEADER -->
+        <div class="customPadding mg-top-10" *ngIf="adventures.length > 0">
+          <!-- <span class="blue sectionHeader uppercase">{{header}}</span> -->
+          <span class="headerCustomSize blue uppercase">EXPLORE {{filter1Title}}</span>
+
+        </div>
+
+        <!-- SECTION - STATES -->
+        <!-- CARDS -->
+        <div class="nowrap slideRowState">
+          <div (click)="filter2(state)" id="card" *ngFor="let state of states; let i = index" class="mg-top-10 divCol" [ngClass]="i > 0 ? 'mg-custom-left' : ''">
+            <ion-card class="stateCard" [ngStyle]="{ 'background-image': 'url(' + state.adventure.gallery[0].image + ')'}">
+            </ion-card>
+            <p class="titleLabel blue uppercase mg-bot-0 twoLinesTxt mg-top-10">
+              {{state.state}}
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div padding class="pad-top-0">
+        <div class="customPadding mg-top-10" *ngIf="adventures.length > 0">
+          <span class="headerCustomSize blue uppercase">ALL {{filter1Title}} EXPERIENCES</span>
+        </div>
+
+        <ion-grid id="container" [@listAnimation]="adventures.length" class="customMgRow">
+          <!-- CARDS -->
+          <ion-row>
+            <ion-col col-5 (click)="openAdventure(adventure)" id="card" *ngFor="let adventure of adventures; let i = index" class="mg-top-10"
+              [ngClass]="i%2 === 0 ? '' : 'mg-left-2-5-percent'">
+              <ion-card class="adventureCard" [ngStyle]="{ 'background-image': 'url(' + adventure.gallery[0].image + ')'}">
+              </ion-card>
+              <!-- LOCATION -->
+              <div class="mg-top-5">
+                <p class="uppercase locationLabel cinerous mg-top-0 mg-bot-0 dispInline" style="overflow: hidden;">
+                  {{adventure.adventures}} ·
+                </p>
+                <p class="locationLabel uppercase cinerous oneLineTxt mg-top-0 mg-bot-0 dispInline">
+                  {{adventure.destinyCity}} ({{adventure.destinyState}})
+                </p>
+              </div>
+
+              <p class="titleLabel blue capitalize mg-bot-0 twoLinesTxt mg-top--2">
+                {{adventure.title}}
+              </p>
+
+
+              <!-- PRICE -->
+              <p class="priceLabel blue mg-top-2 mg-bot-0">
+                ${{formatPrice(adventure.price)}} p/ person
+              </p>
+
+              <!-- IF 0 RATINGS -->
+              <div class="mg-top--3" *ngIf="!adventure.score">
+                <!-- RATINGS -->
+                <span>
+                  <span>
+                    <img class="starIcon" src="assets/imgs/star2.png">
+                  </span>
+                  <span class="mg--2">
+                    <img class="starIcon" src="assets/imgs/star2.png">
+                  </span>
+                  <span class="mg--2">
+                    <img class="starIcon" src="assets/imgs/star2.png">
+                  </span>
+                  <span class="mg--2">
+                    <img class="starIcon" src="assets/imgs/star2.png">
+                  </span>
+                  <span class="mg--2">
+                    <img class="starIcon" src="assets/imgs/star2-outline.png">
+                  </span>
+                </span>
+              </div>
+
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+
+    <!-- ***************************/////////// FILTER 2 ///////////*************************** -->
+    <div *ngIf="step === 2">
+      <div padding class="pad-top-0">
+        <div class="customPadding mg-top-10" *ngIf="adventures.length > 0">
+          <span class="headerCustomSize blue uppercase">{{filter1Title}} in {{filter2Title}}
+            <span class="semibold">({{adventures.length}})</span>
+          </span>
+        </div>
+
+        <ion-grid id="container" [@listAnimation]="adventures.length" class="customMgRow">
+          <!-- CARDS -->
+          <ion-row>
+            <ion-col col-12 (click)="openAdventure(adventure)" id="card" *ngFor="let adventure of adventures; let i = index" class="mg-top-10">
+              <ion-card class="adventureCardLarge" [ngStyle]="{ 'background-image': 'url(' + adventure.gallery[0].image + ')'}">
+              </ion-card>
+
+              <p class="titleLabel blue capitalize mg-bot-0">
+                {{adventure.title}}
+              </p>
+
+
+              <!-- PRICE -->
+              <p class="priceLabel blue mg-top-2 mg-bot-0 dispInline">
+                ${{formatPrice(adventure.price)}} p/ person ·
+              </p>
+
+              <!-- IF 0 RATINGS -->
+              <div class="mg-top--3 dispInline" *ngIf="!adventure.score">
+                <!-- RATINGS -->
+                <span>
+                  <span>
+                    <img class="starIcon" src="assets/imgs/star2.png">
+                  </span>
+                  <span class="mg--2">
+                    <img class="starIcon" src="assets/imgs/star2.png">
+                  </span>
+                  <span class="mg--2">
+                    <img class="starIcon" src="assets/imgs/star2.png">
+                  </span>
+                  <span class="mg--2">
+                    <img class="starIcon" src="assets/imgs/star2.png">
+                  </span>
+                  <span class="mg--2">
+                    <img class="starIcon" src="assets/imgs/star2-outline.png">
+                  </span>
+                </span>
+              </div>
+
+
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+
+    <!-- ***************************/////////// FILTER 3 ///////////*************************** -->
+    <div *ngIf="step === 3">
+      <div padding class="pad-top-0">
+        <!-- HIKING -->
+        <!-- HEADER -->
+        <div class="customPadding10 mg-top-10" *ngIf="adventures.length > 0">
+          <span class="headerCustomSize blue uppercase">HIKING IN {{filter3Title}}
+            <!-- <span class="semibold">({{hikings.length}})</span> -->
+          </span>
+        </div>
+
+        <!-- CARDS -->
+        <div class="nowrap slideRow">
+          <div (click)="openAdventure(adventure)" id="card" *ngFor="let adventure of hikings; let i = index" class="mg-top-10 divCol"
+            [ngClass]="i > 0 ? 'mg-custom-left' : ''">
+            <ion-card class="stateCard" [ngStyle]="{ 'background-image': 'url(' + adventure.gallery[0].image + ')'}">
+            </ion-card>
+            <!-- LOCATION -->
+            <div class="mg-top-5">
+              <p class="uppercase locationLabel blue mg-top-0 mg-bot-0" style="overflow: hidden;">
+                {{adventure.adventures}}
+              </p>
+              <p class="locationLabel uppercase blue oneLineTxt mg-top--2 mg-bot-0">
+                {{adventure.destinyCity}} - {{adventure.destinyState}}
+              </p>
+            </div>
+
+            <div style="white-space: initial">
+              <p class="titleLabelSize11 blue capitalize mg-bot-0 twoLinesTxt mg-top-3">
+                {{adventure.title}}
+              </p>
+            </div>
+
+
+            <!-- PRICE -->
+            <p class="priceLabel blue mg-top-2 mg-bot-0">
+              ${{formatPrice(adventure.price)}} p/ person
+            </p>
+
+            <!-- IF 0 RATINGS -->
+            <div class="mg-top--3" *ngIf="!adventure.score">
+              <span>
+                <span>
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2-outline.png">
+                </span>
+              </span>
+            </div>
+          </div>
+
+          <div class="viewMore" (click)="viewAll('hiking')">
+            VIEW
+            <br> MORE
+          </div>
+        </div>
+
+        <!-- RUNNING -->
+        <!-- HEADER -->
+        <div class="customPadding10 mg-top-10" *ngIf="adventures.length > 0">
+          <span class="headerCustomSize blue uppercase">RUNNING IN {{filter3Title}}
+            <!-- <span class="semibold">({{runnings.length}})</span> -->
+          </span>
+        </div>
+
+        <!-- CARDS -->
+        <div class="nowrap slideRow">
+          <div (click)="openAdventure(adventure)" id="card" *ngFor="let adventure of runnings; let i = index" class="mg-top-10 divCol"
+            [ngClass]="i > 0 ? 'mg-custom-left' : ''">
+            <ion-card class="stateCard" [ngStyle]="{ 'background-image': 'url(' + adventure.gallery[0].image + ')'}">
+            </ion-card>
+            <!-- LOCATION -->
+            <div class="mg-top-5">
+              <p class="uppercase locationLabel blue mg-top-0 mg-bot-0" style="overflow: hidden;">
+                {{adventure.adventures}}
+              </p>
+              <p class="locationLabel uppercase blue oneLineTxt mg-top--2 mg-bot-0">
+                {{adventure.destinyCity}} - {{adventure.destinyState}}
+              </p>
+            </div>
+
+            <div style="white-space: initial">
+              <p class="titleLabelSize11 blue capitalize mg-bot-0 twoLinesTxt mg-top-3">
+                {{adventure.title}}
+              </p>
+            </div>
+
+
+            <!-- PRICE -->
+            <p class="priceLabel blue mg-top-2 mg-bot-0">
+              ${{formatPrice(adventure.price)}} p/ person
+            </p>
+
+            <!-- IF 0 RATINGS -->
+            <div class="mg-top--3" *ngIf="!adventure.score">
+              <span>
+                <span>
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2-outline.png">
+                </span>
+              </span>
+            </div>
+          </div>
+
+
+          <div class="viewMore" (click)="viewAll('running')">
+            VIEW
+            <br> MORE
+          </div>
+        </div>
+
+        <!-- CYCLING -->
+        <!-- HEADER -->
+        <div class="customPadding10 mg-top-10" *ngIf="adventures.length > 0">
+          <span class="headerCustomSize blue uppercase">CYCLING IN {{filter3Title}}
+            <!-- <span class="semibold">({{cycling.length}})</span> -->
+          </span>
+        </div>
+
+        <!-- CARDS -->
+        <div class="nowrap slideRow">
+          <div (click)="openAdventure(adventure)" id="card" *ngFor="let adventure of cycling; let i = index" class="mg-top-10 divCol"
+            [ngClass]="i > 0 ? 'mg-custom-left' : ''">
+            <ion-card class="stateCard" [ngStyle]="{ 'background-image': 'url(' + adventure.gallery[0].image + ')'}">
+            </ion-card>
+            <!-- LOCATION -->
+            <div class="mg-top-5">
+              <p class="uppercase locationLabel blue mg-top-0 mg-bot-0" style="overflow: hidden;">
+                {{adventure.adventures}}
+              </p>
+              <p class="locationLabel uppercase blue oneLineTxt mg-top--2 mg-bot-0">
+                {{adventure.destinyCity}} - {{adventure.destinyState}}
+              </p>
+            </div>
+
+            <div style="white-space: initial">
+              <p class="titleLabelSize11 blue capitalize mg-bot-0 twoLinesTxt mg-top-3">
+                {{adventure.title}}
+              </p>
+            </div>
+
+
+            <!-- PRICE -->
+            <p class="priceLabel blue mg-top-2 mg-bot-0">
+              ${{formatPrice(adventure.price)}} p/ person
+            </p>
+
+            <!-- IF 0 RATINGS -->
+            <div class="mg-top--3" *ngIf="!adventure.score">
+              <span>
+                <span>
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2.png">
+                </span>
+                <span class="mg--2">
+                  <img class="starIcon" src="assets/imgs/star2-outline.png">
+                </span>
+              </span>
+            </div>
+          </div>
+
+
+          <div class="viewMore" (click)="viewAll('cycling')">
+            VIEW
+            <br> MORE
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</ion-content>

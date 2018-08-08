@@ -1,0 +1,324 @@
+<ion-header id="fixed" *ngIf="show" [@fixed]>
+    <ion-navbar>
+        <div class="backBtnAdventure" (click)="back()">
+            <ion-icon class="iconBackAdventure" name="ios-arrow-back"></ion-icon>
+            <span class="backTxtAdventure bold">BACK</span>
+        </div>
+        <div class="shareBtnAdventure" (click)="share()">
+            <ion-icon class="iconWishAdventure" name="md-share"></ion-icon>
+        </div>
+        <div class="wishBtnAdventure" *ngIf="!wishIcon" (click)="wish()">
+            <ion-icon class="iconWishAdventure" name="md-heart-outline"></ion-icon>
+        </div>
+        <div class="wishBtnAdventure" *ngIf="wishIcon" (click)="removeWish()">
+            <ion-icon class="iconWishAdventure eggShell" name="md-heart"></ion-icon>
+        </div>
+    </ion-navbar>
+</ion-header>
+
+<ion-content (ionScroll)="onScroll($event)">
+
+    <!-- FULL SLIDE -->
+    <div class="fullSlides">
+        <ion-slides pager>
+            <ion-slide *ngFor="let slide of adventure?.gallery; let i = index" class="slide" [ngStyle]="{ 'background-image': 'url(' + adventure?.gallery[i].image + ')'}">
+                <div class="wrapper">
+                </div>
+                <div class="overlay"></div>
+                <div class="overlay2"></div>
+            </ion-slide>
+        </ion-slides>
+    </div>
+
+    <div *ngIf="owner">
+        <!-- GALLERY SLIDE -->
+        <div>
+            <!-- INIT HEADER -->
+            <div id="header" *ngIf="!show" [@header]>
+                <div class="backBtnAdventure" (click)="back()">
+                    <ion-icon class="iconBackAdventure" name="ios-arrow-back"></ion-icon>
+                    <span class="backTxtAdventure bold">BACK</span>
+                </div>
+                <div class="shareBtnAdventure" (click)="share()">
+                    <ion-icon class="iconWishAdventure" name="md-share"></ion-icon>
+                </div>
+                <div class="wishBtnAdventure" *ngIf="!wishIcon" (click)="wish()">
+                    <ion-icon class="iconWishAdventure" name="md-heart-outline"></ion-icon>
+                </div>
+                <div class="wishBtnAdventure" *ngIf="wishIcon" (click)="removeWish()">
+                    <ion-icon class="iconWishAdventure eggShell" name="md-heart"></ion-icon>
+                </div>
+            </div>
+        </div>
+        <!-- END HEADER -->
+
+        <!-- OWNER AVATAR -->
+        <!-- <div class="ownerAvatarContainer">
+            <img class="ownerAvatar" [src]="adventure?.user.avatar">
+        </div> -->
+
+        <!-- CONTAINER ABSOLUTE -->
+        <div class="absContainer">
+            <div class="ownerAvatarContainer">
+                <img class="ownerAvatar" [src]="adventure.user.avatar">
+            </div>
+
+            <p class="bold uppercase white" style="margin-bottom: 0px">{{adventure?.adventures}}</p>
+            <div class="adventureTitleLabel">
+                <p class="uppercase adventureTitleLabel mg-top-0 mg-bot-0 white">{{adventure?.title}}</p>
+            </div>
+
+            <div class="mg-top-20 white">
+                <!-- LOCATION -->
+                <div class="iconContainer white">
+                    <img src="assets/imgs/location-icon-white.png" class="adventureIcon2">
+                    <span class="adventureHeader uppercase iconTxt2 white">{{adventure?.destinyCity}} • {{adventure?.destinyState}}</span>
+                </div>
+
+                <!-- DURATION -->
+                <div class="iconContainer mg-top-5 white">
+                    <img src="assets/imgs/clock-icon-white.png" class="adventureIcon2">
+                    <span class="adventureHeader uppercase iconTxt2 white">{{adventure?.duration}} hours</span>
+                </div>
+
+                <!-- TRAVELLERS -->
+                <div class="iconContainer mg-top-5 white">
+                    <img src="assets/imgs/travellers-icon-white.png" class="adventureIcon2">
+                    <span class="adventureHeader uppercase iconTxt2 white">
+                        <span class="light">Up to</span> {{adventure?.travellers}} travellers</span>
+                </div>
+
+                <!-- DIFFICULTY -->
+                <div class="iconContainer mg-top-5 white">
+                    <img src="assets/imgs/level-icon-white.png" class="adventureIcon2">
+                    <span class="adventureHeader uppercase iconTxt2 white">Difficulty level<span class="light">: {{adventure?.difficulty}}</span>
+                    </span>
+                </div>
+
+                <!-- VALUE -->
+                <!-- <div class="iconContainer mg-top-5 white">
+                    <img src="assets/imgs/money-icon-white.png" class="adventureIcon2">
+                    <span class="adventureHeader uppercase iconTxt2 white">${{formatPrice(adventure?.price)}}
+                        <span class="light"> per person</span>
+                    </span>
+                </div> -->
+            </div>
+
+        </div>
+
+        <!-- SECTION 1 - ADVENTURE DETAILS -->
+        <!-- <div padding>
+            <div class="customPadding"> -->
+        <!-- <span class="blue sectionHeader uppercase">{{adventure?.title}}</span> -->
+
+        <!-- FEATURES -->
+        <!-- <div class="mg-top-30"> -->
+        <!-- LOCATION -->
+        <!-- <div class="iconContainer">
+                        <img src="assets/imgs/location-icon.png" class="adventureIcon">
+                        <span class="adventureHeader uppercase iconTxt">{{adventure?.destinyCity}} • {{adventure?.destinyState}}</span>
+                    </div> -->
+
+        <!-- DURATION -->
+        <!-- <div class="iconContainer mg-top-10">
+                        <img src="assets/imgs/clock-icon.png" class="adventureIcon">
+                        <span class="adventureHeader uppercase iconTxt">{{adventure?.duration}} hours</span>
+                    </div> -->
+
+        <!-- TRAVELLERS -->
+        <!-- <div class="iconContainer mg-top-10">
+                        <img src="assets/imgs/travellers-icon.png" class="adventureIcon">
+                        <span class="adventureHeader uppercase iconTxt">
+                            <span class="light">Up to</span> {{adventure?.travellers}} travellers</span>
+                    </div> -->
+
+        <!-- DIFFICULTY -->
+        <!-- <div class="iconContainer mg-top-10">
+                        <img src="assets/imgs/level-icon.png" class="adventureIcon">
+                        <span class="adventureHeader uppercase iconTxt">Difficulty level
+                            <span class="light">: {{adventure?.difficulty}}</span>
+                        </span>
+                    </div> -->
+
+        <!-- VALUE -->
+        <!-- <div class="iconContainer mg-top-10">
+                        <img src="assets/imgs/money-icon.png" class="adventureIcon">
+                        <span class="adventureHeader uppercase iconTxt">${{formatPrice(adventure?.price)}}
+                            <span class="light"> per person</span>
+                        </span>
+                   </div> -->
+        <!-- </div>
+            </div>
+        </div> -->
+
+        <!-- SEPARATOR -->
+        <!-- <div class="sectionSeparator paddingProfile">
+            <div class="ownerAvatarContainer">
+                <img class="ownerAvatar" [src]="adventure?.user.avatar">
+            </div>
+        </div> -->
+
+        <!-- SECTION 2 - LOCAL EXPERT -->
+        <div padding>
+            <div class="customPadding">
+                <span class="blue sectionHeader uppercase">Local expert</span>
+                <p class="blue title1 mg-top-10 mg-bot-0">{{adventure?.user.firstName}} {{abrvName(adventure?.user.lastName)}}</p>
+                <p class="blue bodyCopy1 mg-top-10 mg-bot-0">{{adventure?.user.bio}}</p>
+            </div>
+        </div>
+
+        <!-- SEPARATOR -->
+        <div class="sectionSeparator"></div>
+
+        <!-- SECTION 3 - THE ADVENTURE -->
+        <div padding>
+            <div class="customPadding">
+                <span class="blue sectionHeader uppercase">The adventure</span>
+                <p class="blue bodyCopy1 mg-top-10 mg-bot-0">{{adventure?.description}}</p>
+            </div>
+        </div>
+
+        <!-- SEPARATOR -->
+        <div class="sectionSeparator"></div>
+
+        <!-- SECTION 4 - THE GEAR -->
+        <div padding>
+            <div class="customPadding">
+                <span class="blue sectionHeader uppercase">The gear</span>
+                <p class="blue bodyCopy1 mg-top-10 mg-bot-0">{{adventure?.gear}}</p>
+            </div>
+        </div>
+
+        <!-- SEPARATOR -->
+        <div class="sectionSeparator"></div>
+
+        <!-- SECTION 5 - MEETING UP -->
+        <div padding>
+            <div class="customPadding">
+                <span class="blue sectionHeader uppercase">Meeting up</span>
+            </div>
+        </div>
+        <div id='map'></div>
+
+        <!-- SECTION 6 - AVAILABILITY -->
+        <!-- <div padding class="mg-top-20">
+            <div class="customPadding">
+                <span class="blue sectionHeader uppercase">Book</span>
+                <p class="blue bodyCopy1 mg-top-10 mg-bot-0">Select date and proceed to checkout</p>
+            </div>
+        </div> -->
+
+        <!-- <div class="center">
+            <p class="uppercase title3Semibold">{{viewTitle}}</p>
+        </div> -->
+        <!-- BLUE SEPARATOR -->
+        <!-- <div class="sectionBlueSeparator"></div> -->
+
+        <!-- CALENDAR -->
+        <!-- <div [ngClass]="calendarLoad ? 'calendarLoading' : ''">
+            <calendar [eventSource]="eventSource" [calendarMode]="calendar.mode" [currentDate]="calendar.currentDate" [autoSelect]=false
+                (onEventSelected)="onEventSelected($event)" (onTitleChanged)="onViewTitleChanged($event)" (onTimeSelected)="onTimeSelected($event)"
+                step="30" class="calendar">
+            </calendar>
+        </div> -->
+
+
+        <!-- SEPARATOR -->
+        <div *ngIf="reviews.length > 0" class="sectionSeparator"></div>
+
+        <!-- SECTION 7 - REVIEWS -->
+        <div padding *ngIf="reviews.length > 0">
+            <div class="customPadding">
+                <span class="blue sectionHeader uppercase">Reviews</span>
+
+                <!-- REVIEW ITEM -->
+                <ion-grid class="no-pad" *ngFor="let rev of reviews">
+                    <ion-row class="no-pad mg-top-20">
+                        <ion-col col-3 class="no-pad">
+                            <img class="reviewAvatar" [src]="rev.user.avatar">
+                        </ion-col>
+
+                        <ion-col col-9 class="no-pad">
+                            <span class="cinerous subheader uppercase">{{rev.createdAt | amDateFormat:'MMM YYYY'}}</span>
+                            <br>
+                            <span class="blue title3">{{rev.user.firstName}} {{rev.user.lastName}}</span>
+                            <!-- 1 -->
+                            <div *ngIf="rev.rating === 1">
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star border-fill footnote1"></span>
+                                <span class="fa fa-star border-fill footnote1"></span>
+                                <span class="fa fa-star border-fill footnote1"></span>
+                                <span class="fa fa-star border-fill footnote1"></span>
+                            </div>
+
+                            <!-- 2 -->
+                            <div *ngIf="rev.rating === 2">
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star border-fill footnote1"></span>
+                                <span class="fa fa-star border-fill footnote1"></span>
+                                <span class="fa fa-star border-fill footnote1"></span>
+                            </div>
+
+                            <!-- 3 -->
+                            <div *ngIf="rev.rating === 3">
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star border-fill footnote1"></span>
+                                <span class="fa fa-star border-fill footnote1"></span>
+                            </div>
+
+                            <!-- 4 -->
+                            <div *ngIf="rev.rating === 4">
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star border-fill footnote1"></span>
+                            </div>
+
+                            <!-- 5 -->
+                            <div *ngIf="rev.rating === 5">
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star fill footnote1"></span>
+                                <span class="fa fa-star fill footnote1"></span>
+                            </div>
+                        </ion-col>
+                    </ion-row>
+
+                    <ion-row class="no-pad">
+                        <p class="blue bodyCopy1 mg-top-10 mg-bot-0">{{rev.message}}</p>
+                    </ion-row>
+                </ion-grid>
+            </div>
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+
+
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-toolbar>
+        <div class="leftTxt">
+            <span class="title3 blue adventureTitle">{{adventure?.title}}</span>
+            <span class="caption2 blue adventureSubtitle">
+                <span class="bold">${{formatPrice(adventure?.price)}}</span>
+                <span> per person</span>
+            </span>
+        </div>
+
+        <!-- <div class="bookBtn" (click)="talk()">
+            <span class="caption2">Talk to local</span>
+        </div> -->
+        <div class="bookBtn" (click)="toCheckout()">
+            <span class="caption2">Book now</span>
+        </div>
+    </ion-toolbar>
+</ion-footer>

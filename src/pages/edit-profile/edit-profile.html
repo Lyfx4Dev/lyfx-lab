@@ -1,0 +1,98 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+    <div class="editBtn" (click)="save()">
+      <span class="editTxt bold">SAVE</span>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div *ngIf="user">
+
+    <!-- AVATAR -->
+    <div text-center class="mg-top-20">
+      <img *ngIf="!editPhoto" (click)="pegarFoto()" class="ownerImage" [src]="user.avatar" />
+      <img *ngIf="editPhoto" (click)="pegarFoto()" class="ownerImage" [src]="imageUpload" />
+      <p ion-text color="dark" no-margin tappable (click)="pegarFoto()">
+        <span *ngIf="!editPhoto">Change your photo</span>
+        <span *ngIf="editPhoto">Add your photo</span>
+      </p>
+    </div>
+
+    <!-- FIRST NAME -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">FIRST NAME</span>
+      <br>
+      <input type="text" class="inputTxt customInputLight" [(ngModel)]="user.firstName">
+    </div>
+
+    <!-- LAST NAME -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">LAST NAME</span>
+      <br>
+      <input type="text" class="inputTxt customInputLight" [(ngModel)]="user.lastName">
+    </div>
+
+    <!-- NICKNAME -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">NICKNAME</span>
+      <br>
+      <input type="text" class="inputTxt customInputLight" placeholder="lyfx.co/yournickname" (input)="transformNickname($event.target.value)"
+        [(ngModel)]="user.nickname">
+    </div>
+
+    <!-- CITY -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">CITY</span>
+      <br>
+      <input type="text" class="inputTxt customInputLight" [(ngModel)]="user.city">
+    </div>
+
+    <!-- STAT -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">STATE</span>
+      <br>
+      <input type="text" class="inputTxt customInputLight" [(ngModel)]="user.state">
+    </div>
+
+    <!-- COUNTRY -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">COUNTRY</span>
+      <br>
+      <input type="text" class="inputTxt customInputLight" [(ngModel)]="user.country">
+    </div>
+
+    <!-- BIO -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">ABOUT</span>
+      <br>
+      <textarea type="text" class="inputTxt customInputLight" [(ngModel)]="user.bio"></textarea>
+    </div>
+
+    <!-- BTN -->
+    <button ion-button full class="mg-top-20" (click)="save()" round>
+      <span class="eggshell">Save</span>
+    </button>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
+</ion-content>

@@ -1,0 +1,287 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+    <div class="editBtn" (click)="next()">
+      <span class="editTxt bold">NEXT</span>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div padding style="padding-bottom: 0px !important">
+    <!-- ******* STEP 1 ******* -->
+    <div *ngIf="step === 1">
+      <!-- CATEGORIES -->
+      <div class="mg-top-20">
+        <div>
+          <span class="blue inputLabel uppercase">
+            What is the type of your activity?
+          </span>
+        </div>
+        <ion-item class="no-pad">
+          <ion-label class="blue inputLabel uppercase">Category</ion-label>
+          <ion-select [(ngModel)]="adventure.adventures">
+            <ion-option class="customInputLight uppercase" value="{{categorie.name}}" *ngFor="let categorie of categories">
+              <span>{{categorie.name}}</span>
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+
+      <!-- DIFFICULTY -->
+      <div class="mg-top-40">
+        <div>
+          <span class="blue inputLabel uppercase">
+            What is the difficulty of your activity?
+          </span>
+        </div>
+        <ion-item class="no-pad">
+          <ion-label class="blue inputLabel uppercase">Difficulty</ion-label>
+          <ion-select [(ngModel)]="adventure.difficulty">
+            <ion-option class="customInputLight uppercase" value="Easy">
+              <span>Easy</span>
+            </ion-option>
+            <ion-option class="customInputLight uppercase" value="Medium">
+              <span>Medium</span>
+            </ion-option>
+            <ion-option class="customInputLight uppercase" value="Hard">
+              <span>Hard</span>
+            </ion-option>
+          </ion-select>
+        </ion-item>
+      </div>
+    </div>
+
+    <!-- ******* STEP 2 ******* -->
+    <div *ngIf="step === 2">
+      <!-- TITLE -->
+      <div class="mg-top-20">
+        <span class="blue inputLabel uppercase">
+          What kind of title would catch your attention? Think of a title for your adventure that’s clever and engaging, yet clearly
+          describes the experience. Have fun with it!
+        </span>
+        <br>
+        <input placeholder="Adventure title" type="text" class="inputTxt customInputLight" [(ngModel)]="adventure.title">
+      </div>
+
+      <!-- DESCRIPTION -->
+      <div class="mg-top-40">
+        <span class="blue inputLabel uppercase">
+          Description:
+        </span>
+        <br>
+        <textarea placeholder="Your adventure description here" type="text" class="inputTxt customInputLight" [(ngModel)]="adventure.description"></textarea>
+      </div>
+    </div>
+
+    <!-- ******* STEP 3 ******* -->
+    <div *ngIf="step === 3">
+      <!-- GEAR -->
+      <div class="mg-top-20">
+        <span class="blue inputLabel uppercase">
+          Gear:
+        </span>
+        <br>
+        <textarea placeholder="Don’t forget to remind travelers to bring sunscreen, water, appropriate shoes, comfortable clothing, etc."
+          type="text" class="inputTxt customInputLight" [(ngModel)]="adventure.gear"></textarea>
+      </div>
+
+      <!-- MIN AGE -->
+      <div class="mg-top-40">
+        <span class="blue inputLabel uppercase">
+          Min. age:
+        </span>
+        <br>
+        <input placeholder="18 years" type="number" class="inputTxt customInputLight" [(ngModel)]="adventure.minAge" type="tel" currencyMask
+          type="tel" [options]="{ prefix: '', suffix: ' years ', align: 'left', precision: 0 }">
+      </div>
+    </div>
+
+    <!-- ******* STEP 4 ******* -->
+    <div *ngIf="step === 4">
+      <!-- TRAVELLERS -->
+      <div class="mg-top-20">
+        <span class="blue inputLabel uppercase">
+          For how many travelers?
+        </span>
+        <br>
+        <input placeholder="2 travllers" type="number" class="inputTxt customInputLight" [(ngModel)]="adventure.travellers" currencyMask
+          type="tel" [options]="{ prefix: '', suffix: ' travellers ', align: 'left', precision: 0 }">
+      </div>
+
+      <!-- DURATION -->
+      <div class="mg-top-40">
+        <span class="blue inputLabel uppercase">
+          How long will your adventure last? (Hours)
+        </span>
+        <br>
+        <input placeholder="4 hours" class="inputTxt customInputLight" [(ngModel)]="adventure.duration" currencyMask type="tel" [options]="{ prefix: '', suffix: ' hours ', align: 'left', precision: 0 }">
+      </div>
+    </div>
+  </div>
+
+  <!-- ******* STEP 5 ******* -->
+  <div *ngIf="step === 5">
+    <div padding style="padding-top: 0px !important">
+      <!-- LOCATION -->
+      <div class="mg-top-20">
+        <span class="blue inputLabel uppercase">
+          Where will your adventure begin?
+        </span>
+      </div>
+    </div>
+    <!-- MAP -->
+    <div id='map'></div>
+
+    <div padding>
+      <ion-list [hidden]="autocompleteItems.length == 0" class="sugestions">
+        <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item, 'origin')">
+          {{ item.description }}
+        </ion-item>
+      </ion-list>
+
+      <input placeholder="Type here" type="text" class="inputTxt customInputLight" [(ngModel)]="autocomplete.input" (input)="updateSearchResults()">
+
+    </div>
+  </div>
+
+  <!-- ******* STEP 6 ******* -->
+  <div *ngIf="step === 6" padding style="padding-top: 0px !important">
+    <!-- LOCATION -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">
+        Please, select the city, state and country where your adventure will take place:
+      </span>
+    </div>
+
+    <ion-list [hidden]="autocompleteItems.length == 0" class="sugestions">
+      <ion-item *ngFor="let item of autocompleteItems" tappable (click)="selectSearchResult(item, 'destiny')">
+        {{ item.description }}
+      </ion-item>
+    </ion-list>
+
+    <input placeholder="Type here" type="text" class="inputTxt customInputLight" [(ngModel)]="autocomplete.input2" (input)="updateSearchResults2()">
+  </div>
+
+  <!-- ******* STEP 7 ******* -->
+  <div *ngIf="step === 7" padding style="padding-top: 0px !important">
+    <!-- LOCATION -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">
+        Price:
+      </span>
+    </div>
+    <input placeholder="$100.00" type="tel" class="inputTxt customInputLight" [(ngModel)]="adventure.price" currencyMask [options]="{ prefix: '$ ', thousands: ',', decimal: '.', align: 'left' }">
+  </div>
+
+
+  <!-- ******* STEP 8 ******* -->
+  <div *ngIf="step === 8" padding style="padding-top: 0px !important">
+    <!-- LOCATION -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">
+        Tap the days of the week that you will be offline:
+      </span>
+    </div>
+
+    <ion-list class="no-pad mg-top-10">
+
+      <ion-item class="no-pad">
+        <ion-label class="openSans">Sunday</ion-label>
+        <ion-checkbox [(ngModel)]="check.dom" (ionChange)="week(0)"></ion-checkbox>
+      </ion-item>
+
+      <ion-item class="no-pad">
+        <ion-label class="openSans">Monday</ion-label>
+        <ion-checkbox [(ngModel)]="check.seg" (ionChange)="week(1)"></ion-checkbox>
+      </ion-item>
+
+      <ion-item class="no-pad">
+        <ion-label class="openSans">Tuesday</ion-label>
+        <ion-checkbox [(ngModel)]="check.ter" (ionChange)="week(2)"></ion-checkbox>
+      </ion-item>
+
+      <ion-item class="no-pad">
+        <ion-label class="openSans">Wednesday</ion-label>
+        <ion-checkbox [(ngModel)]="check.quar" (ionChange)="week(3)"></ion-checkbox>
+      </ion-item>
+
+      <ion-item class="no-pad">
+        <ion-label class="openSans">Thursday</ion-label>
+        <ion-checkbox [(ngModel)]="check.quin" (ionChange)="week(4)"></ion-checkbox>
+      </ion-item>
+
+      <ion-item class="no-pad">
+        <ion-label class="openSans">Friday</ion-label>
+        <ion-checkbox [(ngModel)]="check.sext" (ionChange)="week(5)"></ion-checkbox>
+      </ion-item>
+
+      <ion-item class="no-pad">
+        <ion-label class="openSans">Saturday</ion-label>
+        <ion-checkbox [(ngModel)]="check.sab" (ionChange)="week(6)"></ion-checkbox>
+      </ion-item>
+    </ion-list>
+  </div>
+
+  <!-- ******* STEP 9 ******* -->
+  <div *ngIf="step === 9" padding style="padding-top: 0px !important">
+    <!-- LOCATION -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">
+        Tap to block other specific dates:
+      </span>
+    </div>
+
+    <div class="center mg-top-40">
+      <p class="uppercase title3Semibold">{{viewTitle}}</p>
+    </div>
+
+    <calendar style="padding-left: 0px !important; margin-left: 0px !important" [eventSource]="eventSource" [calendarMode]="calendar.mode"
+      [currentDate]="calendar.currentDate" [allDayLabel]="lblAllDay" [noEventsLabel]="lblNoEvents" [autoSelect]="false" [showEventDetail]=false
+      (onTimeSelected)="onTimeSelected($event)" (onTitleChanged)="onViewTitleChanged($event)" step="30" class="calendar" spaceBetween="40">
+    </calendar>
+  </div>
+
+  <!-- ******* STEP 10 ******* -->
+  <div *ngIf="step === 10" padding style="padding-top: 0px !important">
+    <!-- LOCATION -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">
+        Starting time:
+      </span>
+    </div>
+
+    <ion-item *ngIf="showHour" class="no-pad">
+      <ion-label class="inputLabel blue">Click here to select</ion-label>
+      <ion-datetime class="inputTxt blue" displayFormat="HH:MM" [(ngModel)]="adventure.hour"></ion-datetime>
+    </ion-item>
+
+    <ion-item class="no-pad mg-top-10">
+      <ion-label class="inputLabel blue">To be setup with the traveller</ion-label>
+      <ion-checkbox class="inputTxt blue" checked="false" (ionChange)="showHourVerify()" [(ngModel)]="toCombine"></ion-checkbox>
+    </ion-item>
+  </div>
+
+  <!-- ******* STEP 11 ******* -->
+  <div *ngIf="step === 11" padding style="padding-top: 0px !important">
+    <span class="blue inputLabel uppercase">
+      Photos (the first image will be the cover of your adventure):
+      <br>
+      <span *ngIf="galleryApp.length > 0">*Press image to remove.</span>
+    </span>
+
+    <button class="mg-top-20" ion-button full round (click)="pegarFoto()">Add image</button>
+    <ion-row class="no-pad mg-top-40">
+      <ion-col col-6 class="no-pad" *ngFor="let image of galleryApp; let i = index" (press)="removeImage(i, image)">
+        <div class="galleryImage custHei" [ngStyle]="{ 'background-image': 'url(' + image.id + ')'}">
+        </div>
+      </ion-col>
+    </ion-row>
+  </div>
+
+
+</ion-content>

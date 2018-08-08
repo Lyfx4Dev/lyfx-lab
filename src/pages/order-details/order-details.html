@@ -1,0 +1,63 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+    <div class="addBtn" *ngIf="order.status === 'approved'" (click)="cancel()">
+        <span class="addTxt bold">CANCEL</span>
+      </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="padding16" >
+    <div class="customPadding mg-top-20">
+      <span class="blue sectionHeader uppercase">ORDER DETAILS</span>
+
+      <!-- PAYMENT STATUS -->
+      <div class="mg-top-20">
+        <span class="blue title3">Payment status</span>
+        <br>
+        <span class="blue caption2 capitalize">{{order.status}}</span>
+      </div>
+
+      <!-- PRICE -->
+      <div class="mg-top-20">
+        <span class="blue title3">Price</span>
+        <br>
+        <span class="blue caption2 capitalize">${{order.amount}}</span>
+      </div>
+
+      <!-- DATE -->
+      <div class="mg-top-20">
+        <span class="blue title3">Date</span>
+        <br>
+        <span class="blue caption2 capitalize">{{ convertDate(order.scheduledAt) | amDateFormat:'DD MMM YYYY' }}</span>
+      </div>
+
+      <!-- TRAVELLERS -->
+      <div class="mg-top-20">
+        <span class="blue title3">Travellers</span>
+        <div *ngFor="let traveller of order.travellers">
+          <span class="blue caption2 capitalize">{{traveller.name}}</span>
+        </div>
+      </div>
+
+      <!-- ADDRESS -->
+      <div class="mg-top-20" *ngIf="address">
+        <span class="blue title3">Address</span>
+        <div *ngFor="let traveller of order.travellers">
+          <span class="blue caption2 capitalize" style="text-decoration: underline" (click)="openLocationOnOtherApp()">{{address}}</span>
+        </div>
+      </div>
+
+      <!-- CTA -->
+      <button ion-button full class="mg-top-40" round *ngIf="order.status === 'approved'">
+        <span class="eggshell" (click)="review()">Make review</span>
+      </button>
+
+    </div>
+  </div>
+</ion-content>

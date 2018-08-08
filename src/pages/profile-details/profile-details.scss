@@ -1,0 +1,57 @@
+page-profile-details {
+    // TOP BUTTONS
+    ion-navbar {
+        height: 80px !important;
+        background: $blue
+    }
+    .backBtn {
+        position: absolute;
+        top: 30px;
+        left: 20px;
+        z-index: 10;
+        color: $eggshell
+    }
+    .iconBack {
+        font-size: 24pt
+    }
+    .backTxt{
+        position: relative;
+        top: -5pt;
+        left: 5px
+    }
+    .editBtn {
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        z-index: 10;
+        color: $eggshell
+    }
+    .editTxt {
+        position: relative;
+        top: 5pt;
+        right: 5px
+    }
+
+    //User display info style
+    .userAvatar {
+        width: 90px;
+        border-radius: 100px;
+        border: 1.5px solid $cinerous;
+    }
+    .userName {
+        position: absolute;
+        top: 15px;
+        margin-left: 20px;
+    }
+    .locationInfo {
+        position: absolute;
+        top: 50px;
+        margin-left: 20px
+    }
+
+    //Separator
+    .separator {
+        height: 1px;
+        background-color: $cinerous
+    }
+}

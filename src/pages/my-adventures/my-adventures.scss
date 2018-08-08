@@ -1,0 +1,50 @@
+page-my-adventures {
+    .tabInactive {
+        color: $blue;
+        text-transform: uppercase;
+        padding: 8px 0px !important
+    }
+
+    .tabActive {
+        color: $eggshell;
+        text-transform: uppercase;
+        background-color: $blue;
+        border-radius: 100px;
+        padding: 8px 0px !important
+    }
+
+
+    //Adventure item
+    .adventure {
+        ion-card {
+            position: relative;
+            text-align: left;
+            margin: 0px;
+            width: 105%;
+            left: -2.5%;
+            height: 100px
+        }
+
+        .card-title {
+            position: absolute;
+            top: 26%;
+            width: 100%;
+            font-weight: bold;
+            margin-left: 30px
+        }
+
+        .card-subtitle {
+            position: absolute;
+            top: 55%;
+            width: 100%;
+            margin-left: 30px
+        }
+    }
+    
+    //Adventure featured image
+    .bgImg {
+        filter: blur(1.5px) brightness(0.7);
+        position: relative;
+        top: -100%
+    }
+}

@@ -1,0 +1,34 @@
+page-new-pass {
+    // TOP BUTTONS
+    .backBtn {
+        position: absolute;
+        top: 30px;
+        left: 20px;
+        z-index: 10;
+        color: $eggshell
+    }
+    .iconBack {
+        font-size: 24pt
+    }
+    .backTxt{
+        position: relative;
+        top: -5pt;
+        left: 5px
+    }
+    .editBtn {
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        z-index: 10;
+        color: $eggshell
+    }
+    .editTxt {
+        position: relative;
+        top: 5pt;
+        right: 5px
+    }
+    ion-navbar {
+        height: 80px !important;
+        background: $blue 
+    }
+}

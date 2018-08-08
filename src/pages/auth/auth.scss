@@ -1,0 +1,25 @@
+page-auth {
+    //Gradient
+    .scroll-content{
+        background: linear-gradient(to bottom right, #3a485d, #233a55, #1a3452);
+    }
+
+    .customMgAuth {
+        padding-top: 30px
+    }
+
+    //Fab custom style
+    .fabEggshellBg {
+        background-color: $eggshell;
+        color: $blue
+    }
+
+    //Create account
+    .createAccount {
+        position: absolute;
+        top: 3pt;
+        right: 0
+    }
+
+
+}

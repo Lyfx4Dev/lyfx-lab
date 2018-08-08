@@ -1,0 +1,48 @@
+page-inbox {
+    .friendAvatar {
+        width: 70px;
+        border-radius: 100px;
+    }
+    .friendName {
+        position: absolute;
+        top: 5px;
+        margin-left: 20px
+    }
+    .friendMessage {
+        position: absolute;
+        top: 33px;
+        margin-left: 20px
+    }
+    .timestamp {
+        position: absolute;
+        right: 0;
+        top: 10px;
+        color: #999
+    }
+
+    //Items
+    .item-ios {
+        // border-bottom: 1px solid !important;
+        border-top: 1px solid !important;
+        border-color:$blue !important;
+        padding-bottom: 15px;
+        padding-top: 15px;
+        padding-left: 26px !important;
+        background: none
+    }
+    .item-md {
+        // border-bottom: 1px solid;
+        border-top: 1px solid;
+        border-color: $blue !important;
+        padding-left: 26px !important;
+        padding-bottom: 15px;
+        padding-top: 15px;
+        background: none
+    }
+    .list-ios .item-block .item-inner {
+        border: none
+    }
+    .list-md .item-block .item-inner {
+        border: none
+    }
+}

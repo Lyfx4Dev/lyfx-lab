@@ -1,0 +1,25 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+    <div class="editBtn" (click)="save()">
+      <span class="editTxt bold">SAVE</span>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div>
+
+    <!-- NEW PASSWORD -->
+    <div class="mg-top-40">
+      <span class="blue inputLabel uppercase">Choose new password</span>
+      <br>
+      <input type="password" class="inputTxt customInputLight" [(ngModel)]="newPass">
+    </div>
+  </div>
+</ion-content>

@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div>
+    <!-- MESSAGE -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">Message</span>
+      <br>
+      <textarea type="text" class="inputTxt customInputLight" [(ngModel)]="message"></textarea>
+    </div>
+  </div>
+
+  <!-- BTN -->
+  <button ion-button full class="mg-top-20" (click)="send()" round>
+    <span class="eggshell">Send</span>
+  </button>
+</ion-content>

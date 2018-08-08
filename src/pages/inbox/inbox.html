@@ -1,0 +1,35 @@
+<ion-header>
+  <ion-navbar></ion-navbar>
+</ion-header>
+
+<ion-content>
+    <!-- REFRESH -->
+    <ion-refresher (ionRefresh)="refresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      
+  <div class="padding16">
+    <div class="customPadding">
+      <span class="blue sectionHeader uppercase">INBOX</span>
+    </div>
+  </div>
+
+  <!-- ITEMS -->
+  <ion-list *ngIf="user">
+    <!-- SAVED ADVENTURES -->
+    <ion-item *ngFor="let contact of contacts" (click)="openMessage(contact)">
+      <div class="posRelative">
+        <!-- FRIEND AVATAR -->
+        <img [src]="contact.toUser.avatar" class="friendAvatar">
+        <!-- FRIEND NAME -->
+        <span class="blue title2 friendName limitCharInbox">{{contact.toUser.firstName}} {{abrvName(contact.toUser.lastName)}}</span>
+        <!-- LAST MESSAGE -->
+        <span class="bodycopy3 friendMessage" *ngIf="contact.recentMessage">{{contact.recentMessage}}</span>
+        <span class="bodycopy3 friendMessage" *ngIf="!contact.recentMessage">Working...</span>
+        <!-- DATETIME -->
+        <span class="footnote2 timestamp" *ngIf="contact.datetime">{{contact.datetime | amDateFormat:'DD MMM YYYY HH:mm'}}</span>
+      </div>
+    </ion-item>
+  </ion-list>
+
+</ion-content>  

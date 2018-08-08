@@ -1,0 +1,59 @@
+<ion-header>
+  <ion-navbar>
+      <div class="padding16">
+        <div class="posRelative center">
+          <ion-icon (click)="back()" class="blue backBtn" name="ios-arrow-back"></ion-icon>
+          <span class="blue chatName">{{contact.toUser.firstName}} {{abrvName(contact.toUser.lastName)}}</span>
+        </div>
+      </div>
+      <div class="separator"></div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <!-- MESSAGES -->
+  <div padding>
+      <ion-list class="mg-bot-30">
+          <br>
+          <br>
+          <div *ngFor="let m of messages">
+            
+            <ion-item *ngIf="m.fromOwnerId != id">
+              <ion-avatar item-start>
+                <img [src]="contact.toUser.avatar">
+              </ion-avatar>
+              <p class="bubble right">
+                <span>{{m.message}}</span>
+              </p>
+              <p style="margin-top: 10px" class="left gray">{{ m.createdAt.toDate()  | amDateFormat:'DD MMM YYYY HH:mm' }}</p>
+              <br>
+            </ion-item>
+      
+      
+            <div *ngIf="m.fromOwnerId === id">
+              <p class="bubble left">
+                <span>{{m.message}}</span>
+              </p>
+              <p  style="margin-top: 10px" class="right gray">{{ m.createdAt.toDate()  | amDateFormat:'DD MMM YYYY HH:mm' }}</p>
+              <br>
+            </div>
+      
+          </div>
+        </ion-list>
+  </div>
+</ion-content>
+
+<ion-footer>
+    <ion-toolbar>
+      <ion-row class="no-pad">
+        <ion-col col-8 class="no-pad">
+            <input [(ngModel)]="message" autocorrect="on" autocomplete="on" class="customInputLight" placeholder="Your message">
+          </ion-col>
+    
+          <ion-col col-4 class="no-pad sendDiv" (click)="send()">
+            <p class="uppercase mg-top-10 mg-bot-0 semibold">SEND</p>
+          </ion-col>
+      </ion-row>
+    </ion-toolbar>
+</ion-footer>

@@ -1,0 +1,64 @@
+page-profile {
+    .userAvatar {
+        width: 90px;
+        height: 90px;
+        border-radius: 50%;
+        border: 1.5px solid $cinerous;
+    }
+
+    .userName {
+        position: absolute;
+        top: 20px; //15
+        margin-left: 20px;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        width: 60%;
+        display: inline-block;
+    }
+
+    .viewEdit {
+        position: absolute;
+        top: 50px;
+        margin-left: 20px
+    }
+
+    .sectionTop {
+        position: relative
+    }
+
+    //Items
+    .item-ios {
+        border-bottom: 1px solid !important;
+        border-top: 1px solid !important;
+        border-color: $cinerous !important;
+        padding-left: 26px !important;
+        padding-right: 26px !important;
+        padding-bottom: 15px;
+        padding-top: 15px;
+        background: none
+    }
+    .item-md {
+        border-bottom: 1px solid;
+        border-top: 1px solid;
+        border-color: $cinerous !important;
+        padding-bottom: 15px;
+        padding-top: 15px;
+        padding-left: 26px !important;
+        padding-right: 26px !important;
+        background: none
+    }
+    .botBorder {
+        border-top: none !important;
+        border-bottom: 1px solid !important;
+        border-color: $cinerous !important;
+        padding-left: 26px !important;
+        padding-right: 26px !important;
+        padding-bottom: 10px;
+        padding-top: 10px;
+        background: none
+    }
+    .item-ios.item-block .item-inner {
+        border-bottom: none !important
+    }
+}

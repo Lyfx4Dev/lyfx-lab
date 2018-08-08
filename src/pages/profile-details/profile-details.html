@@ -1,0 +1,41 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+    <div class="editBtn" (click)="edit()">
+      <span class="editTxt bold">EDIT</span>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div *ngIf="user">
+
+    <div class="padding16">
+      <div class="customPadding">
+        <div class="mg-top-10 posRelative">
+          <!-- AVATAR -->
+          <img [src]="user.avatar" class="userAvatar">
+
+          <!-- NAME -->
+          <span class="blue title2 userName">{{user.firstName}} {{user.lastName}}</span>
+          <span class="blue bodyCopy1 locationInfo" (click)="edit()">{{user.city}}
+            <span class="bold" *ngIf="user.state"> · </span>{{user.state}}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="separator"></div>
+
+    <!-- ABOUT -->
+    <div padding>
+      <div class="customPadding">
+        <span class="blue sectionHeader uppercase">About</span>
+        <p class="blue bodyCopy1 mg-top-10 mg-bot-0">{{user.bio}}</p>
+      </div>
+    </div>
+  </div>
+</ion-content>

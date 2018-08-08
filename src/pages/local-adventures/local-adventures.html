@@ -1,0 +1,66 @@
+<ion-header>
+  <ion-navbar></ion-navbar>
+</ion-header>
+
+<ion-content padding>
+    <!-- REFRESH -->
+    <ion-refresher (ionRefresh)="refresh($event)">
+        <ion-refresher-content></ion-refresher-content>
+      </ion-refresher>
+      
+  <div class="customPadding">
+    <span class="blue sectionHeader uppercase">MY ADVENTURES</span>
+  </div>
+
+
+  <!-- ADD NEW ADVENTURE -->
+  <button ion-button full class="mg-top-20"  (click)="add()" round>
+    <span class="eggshell">Create new adventure</span>
+  </button>
+
+  <ion-grid id="container" [@listAnimation]="adventures.length" class="mg-top-20">
+    <!-- Experience cards -->
+    <ion-row>
+      <ion-col col-5 (tap)="openAdventure(adventure)" id="card" *ngFor="let adventure of adventures; let i = index" class="mg-top-10"
+        [ngClass]="i%2 === 0 ? '' : 'mg-left-5-percent'">
+        <ion-card class="adventureCard" [ngStyle]="{ 'background-image': 'url(' + adventure.gallery[0].image + ')'}">
+          <div class="wrapper">
+            <div class='origin'>
+              <p class='footnote3 origin_content uppercase'>{{adventure.destinyCity}}
+                <span class="bold"> · </span>{{adventure.destinyState}}</p>
+            </div>
+          </div>
+        </ion-card>
+
+        <p class="uppercase subheader cinerous mg-top-10 mg-bot-0">
+          {{adventure.adventures}}
+        </p>
+        <p class="title3 blue capitalize mg-top-0 mg-bot-0 oneLineTxt">
+          {{adventure.title}}
+        </p>
+
+        <div>
+          <!-- STARS -->
+          <!-- <span class="fa fa-star fill footnote1"></span>
+          <span class="fa fa-star fill footnote1"></span>
+          <span class="fa fa-star fill footnote1"></span>
+          <span class="fa fa-star border-fill footnote1"></span>
+          <span class="fa fa-star border-fill footnote1"></span> -->
+
+          <!-- RATINGS QNT -->
+          <!-- <span class="footnote1 cinerous">143 <span class="bold">·</span></span> -->
+
+          <!-- PRICE -->
+          <span class="footnote1 blue">
+            ${{formatPrice(adventure.price)}} - <span class="capitalize">{{adventure.status}}</span></span>
+        </div>
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  
+
+
+
+</ion-content>

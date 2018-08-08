@@ -1,0 +1,432 @@
+//Open sans
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700');
+//Open sans condensed
+@import url('https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300');
+
+//Root font to app
+* {
+    font-family: 'Open Sans', sans-serif;
+}
+
+//Content pages
+.scroll-content {
+    background-color: $eggshell !important
+} 
+
+//Titles
+.sectionHeader {
+    font-size: 24pt;
+    font-weight: 100
+}
+.title1 {
+    font-weight: 600;
+    font-size: 18pt;
+}
+.title2 {
+    font-weight: 600;
+    font-size: 15pt;
+}
+.title3 {
+    font-size: 10pt !important;
+    font-weight: 700
+}
+.title3Semibold {
+    font-size: 10pt !important;
+    font-weight: 600
+}
+.subheader {
+    font-size: 8pt;
+    font-weight: 700;
+}
+.adventureHeader {
+    font-size: 10pt;
+    font-weight: 700;
+}
+.footnote1 {
+    font-size: 8pt;
+    font-weight: 600
+}
+.footnote2 {
+    font-size: 8pt;
+}
+.footnote3 {
+    font-family: 'Open Sans Condensed', sans-serif !important;
+    font-size: 8pt;
+    font-style: italic;
+}
+.caption1 {
+    font-size: 12pt;
+}
+.caption2 {
+    font-size: 10pt;
+}
+.bodyCopy1 {
+    font-size: 10pt
+}
+.bodycopy3 {
+    font-size: 10pt
+}
+.inputLabel {
+    font-size: 9pt;
+    font-weight: 600
+}
+.inputTxt {
+    font-size: 11pt;
+    font-weight: 600
+}
+.chatName {
+    font-size: 16pt
+}
+
+//Text transform
+.bold {
+    font-weight: 700;
+}
+.semibold {
+    font-weight: 600;
+}
+.italic {
+    font-style: italic;
+}
+.uppercase {
+    text-transform: uppercase
+}
+.capitalize {
+    text-transform: capitalize
+}
+.light {
+    font-weight: 100
+}
+.dispInline {
+    display: inline-block
+}
+.oneLineTxt {
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    max-width: 100%;
+}
+.twoLinesTxt {
+    height: 2.5em;
+    overflow: hidden;
+    line-height: 1.3;
+}
+.twoLinesTxtTitleAdv {
+    display: block;
+    display: -webkit-box;
+    max-width: 400px;
+    height: 130.2px;
+    // margin: 0 auto;
+    // font-size: 26px;
+    line-height: 1.4;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+//Colors
+.cinerous {
+    color: $cinerous
+}
+.blue {
+    color: $blue
+}
+.teal {
+    color: $teal
+}
+.eggshell {
+    color: $eggshell
+}
+.gray {
+    color: #999
+}
+.yellow {
+    color: $yellow
+}
+.white {
+    color: #fff
+}
+
+//Margin
+.mg-top--3 {
+    margin-top: -3px
+}
+.mg-top--2 {
+    margin-top: -2px
+}
+.mg-top-2 {
+    margin-top: 2px
+}
+.mg-top-3 {
+    margin-top: 3px
+}
+.mg-top-5 {
+    margin-top: 5px
+}
+.mg-top-10 {
+    margin-top: 10px
+}
+.mg-top-20 {
+    margin-top: 20px
+}
+.mg-top-30 {
+    margin-top: 30px
+}
+.mg-top-40 {
+    margin-top: 40px
+}
+.mg-top-60 {
+    margin-top: 60px
+}
+.mg-top-0 {
+    margin-top: 0px
+}
+.mg-top-5{
+    margin-top: 5px
+}
+.mg-top-15{
+    margin-top: 15px
+}
+.mg-bot-0 {
+    margin-bottom: 0px
+}
+.mg-bot-10 {
+    margin-bottom: 10px
+}
+.mg-bot-20 {
+    margin-bottom: 20px
+}
+.mg-left-2-5-percent {
+    margin-left: 3%
+}
+.mg-left-10 {
+    margin-left: 10px
+}
+.mg-custom-left {
+    margin-left: 20px
+}
+.mg-left-5-percent {
+    margin-left: 4.8%
+}
+
+//Custom style
+.customPadding {
+    padding: 0px 10px 10px 10px;
+}
+.customPadding10 {
+    padding: 10px 10px 10px 10px;
+}
+.padding16 {
+    padding: 16px
+}
+.no-pad {
+    padding: 0px !important
+}
+.pad-top-0{
+    padding-top: 0px !important
+}
+.pad-bot-0{
+    padding-bottom: 0px !important
+}
+
+//Custom inputs
+input {
+    border-radius: 0px 
+}
+textarea {
+    border-radius: 0px 
+}
+.customInputLight {
+    border: none;
+    border-bottom: 1px solid $blue;
+    background-color: transparent;
+    color: $blue;
+    padding: 8px 0px;
+    width: 100%
+}
+.customInputDark {
+    border: none;
+    border-bottom: 1px solid $eggshell;
+    background-color: transparent;
+    color: $eggshell;
+    padding: 8px 0px;
+    width: 100%
+}
+
+//Position relative
+.posRelative {
+    position: relative
+}
+
+//Up fab to keyboard
+.top-fab-button { 
+    top: 50% ; 
+}
+
+//Header config
+ion-navbar {
+    min-height: 10px !important;
+    height: 10px !important;
+    background-color: $eggshell 
+}
+.toolbar-background-md {
+    background: none
+}
+.toolbar-background-ios {
+    background: none
+}
+.header-md::after {
+    background-image: none
+}
+.header-ios .toolbar-background-ios {
+    border: none
+}
+
+//Footer menu
+.tab-button-icon {
+    font-size: 2.2em !important
+}
+.tab-button-text {
+    font-family: 'Open Sans', sans-serif !important;
+    color: #0f3554 !important;
+    text-transform: uppercase !important
+}
+.tabs-ios .tab-button[aria-selected=false]{
+    opacity: 0.40 
+}
+.tabs-md .tab-button[aria-selected=false]{
+    opacity: 0.40 
+}
+div.tabbar.show-tabbar {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important
+}
+.tabs-md .tab-button-text {
+    font-size: 1.0rem !important;
+}
+.tabs-ios .tabbar {
+    background-color: #eadfd6;
+}
+.tabs-md .tabbar {
+    background-color: #eadfd6;
+}
+
+//Aligns
+.center {
+    text-align: center
+}
+.textRight {
+    text-align: right
+}
+
+//Hide
+.hide {
+    display: none
+}
+
+//Limit characteres on inbox
+.limitCharInbox {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 110px;
+}
+.limitCharCalendar {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 300px;
+}
+
+//Small device
+@media (max-width: 400px)  { 
+    .twoLinesTxtTitleAdv {
+        display: block;
+        display: -webkit-box;
+        max-width: 400px;
+        height: 109.2px;
+        // margin: 0 auto;
+        // font-size: 26px;
+        line-height: 1.4;
+        -webkit-line-clamp: 3;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+        //Titles
+        .sectionHeader {
+            font-size: 20pt;
+            font-weight: 100
+        }
+        .title3 {
+            font-size: 10pt !important;
+            font-weight: 700
+        }
+        .subheader {
+            font-size: 7pt;
+            font-weight: 700;
+        }
+        .adventureHeader {
+            font-size: 9pt;
+            font-weight: 700;
+        }
+        .footnote1 {
+            font-size: 7pt;
+            font-weight: 500
+        }
+        .title1 {
+            font-weight: 600;
+            font-size: 18pt;
+        }
+        .bodyCopy1 {
+            font-size: 11pt
+        }
+
+        ion-navbar {
+            height: 20px !important
+        }
+    }
+
+
+//Loading spinner
+.loading-md .loading-wrapper {
+    box-shadow: none
+}
+.loading-wrapper {
+    background-color: transparent !important
+}
+.spinner {
+    width: 40px;
+    height: 40px;
+    position: relative;
+}
+.double-bounce1, .double-bounce2 {
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    background-color: $eggshell;
+    opacity: 0.6;
+    position: absolute;
+    top: 0;
+    left: 0;
+    -webkit-animation: sk-bounce 2.0s infinite ease-in-out;
+    animation: sk-bounce 2.0s infinite ease-in-out;
+}
+.double-bounce2 {
+    -webkit-animation-delay: -1.0s;
+    animation-delay: -1.0s;
+}
+@-webkit-keyframes sk-bounce {
+    0%, 100% { -webkit-transform: scale(0.0) }
+    50% { -webkit-transform: scale(1.0) }
+}
+@keyframes sk-bounce {
+    0%, 100% { 
+        transform: scale(0.0);
+        -webkit-transform: scale(0.0);
+    } 50% { 
+        transform: scale(1.0);
+        -webkit-transform: scale(1.0);
+    }
+}

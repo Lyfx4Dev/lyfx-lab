@@ -1,0 +1,76 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+    <div class="editBtn">
+      <span class="editTxt bold uppercase">{{featured}}</span>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div class="customPadding" *ngIf="err">
+    <span class="blue title3">{{error}}</span>
+  </div>
+
+  <div class="customPadding" *ngIf="search">
+    <span class="blue title3">Results for: {{searchFor}}</span>
+  </div>
+
+  <ion-grid id="container" [@listAnimation]="adventures.length" class="customMgRow">
+    <!-- CARDS -->
+    <ion-row>
+      <ion-col col-5 (tap)="openAdventure(adventure)" id="card" *ngFor="let adventure of adventures; let i = index" class="mg-top-10"
+        [ngClass]="i%2 === 0 ? '' : 'mg-left-2-5-percent'">
+        <ion-card class="adventureCard" [ngStyle]="{ 'background-image': 'url(' + adventure.gallery[0].image + ')'}">
+        </ion-card>
+        <!-- LOCATION -->
+        <p class="uppercase locationLabel cinerous mg-top-5 mg-bot-0">
+          {{adventure.destinyCity}} · <span class="blue"> {{adventure.difficulty}}</span>
+        </p>
+        <p class="titleLabel blue capitalize mg-top-2 mg-bot-0 twoLinesTxt">
+          {{adventure.title}}
+        </p>
+
+
+        <!-- PRICE -->
+        <p class="priceLabel cinerous mg-top-2 mg-bot-0">
+          ${{formatPrice(adventure.price)}} p/ person
+        </p>
+
+        <div class="mg-top--3">
+          <!-- RATINGS -->
+          <span *ngIf="!adventure.score">
+            <span>
+              <img class="starIcon" src="assets/imgs/star.png">
+            </span>
+            <span class="mg--2">
+              <img class="starIcon" src="assets/imgs/star.png">
+            </span>
+            <span class="mg--2">
+              <img class="starIcon" src="assets/imgs/star.png">
+            </span>
+            <span class="mg--2">
+              <img class="starIcon" src="assets/imgs/star.png">
+            </span>
+            <span class="mg--2">
+              <img class="starIcon" src="assets/imgs/star.png">
+            </span>
+          </span>
+          <span class="blue specialChar">
+            ·
+          </span>
+          <span class="blue uppercase categorieLabel">
+            {{adventure.adventures}}
+          </span>
+        </div>
+
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

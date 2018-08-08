@@ -1,0 +1,117 @@
+<ion-content padding>
+  <ion-fab bottom right (click)="next()">
+    <button class="fabEggshellBg" ion-fab>
+      <ion-icon name="ios-arrow-forward-outline"></ion-icon>
+    </button>
+  </ion-fab>
+
+  <ion-fab bottom left (click)="back()" *ngIf="show === 'signup-1' || show === 'signup-2' || show === 'signup-3' || show === 'signup-4'">
+      <button class="fabEggshellBg" ion-fab>
+        <ion-icon name="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-fab>
+  <div class="customPadding customMgAuth">
+    <!-- SIGNIN -->
+    <div *ngIf="show === 'signin'" class="posRelative">
+      <span class="eggshell sectionHeader">Sign in</span>
+      <span class="eggshell caption2 createAccount" (click)="toCreateAccount()">Create account</span>
+      <!-- INPUTS -->
+      <div class="mg-top-40">
+        <!-- EMAIL -->
+        <div>
+          <span class="eggshell inputLabel uppercase">Email address</span>
+          <br>
+          <input type="email" class="inputTxt customInputDark" [(ngModel)]="signinForm.email">
+        </div>
+        <!-- PASSWORD -->
+        <div class="mg-top-20">
+          <span class="eggshell inputLabel uppercase">Password</span>
+          <br>
+          <input type="password" class="inputTxt customInputDark" [(ngModel)]="signinForm.password">
+        </div>
+        <p class="eggshell inputLabel mg-top-20" (click)="forgot()">Forgot password</p>
+
+        <!-- FACEBOOK LOGIN -->
+        <div class="mg-top-40">
+          <button ion-button icon-left block color="facebook" (click)="loginFacebook()" round margin-vertical>
+            <ion-icon name="logo-facebook"></ion-icon> Login with facebook
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- SIGNUP -->
+    <div *ngIf="show === 'signup-1'" class="posRelative">
+      <div class="mg-top-40">
+        <!-- AFFILIATE -->
+        <div>
+          <span class="eggshell inputLabel uppercase">Who invited you?</span>
+          <br>
+          <input type="text" (keyup)="pressAffiliateInput()" class="inputTxt customInputDark" [(ngModel)]="affiliateInput">
+          <br>
+            <ion-item *ngIf="affiliateUser !=null" (click)="selectSearchResult()">
+              <ion-avatar item-start icon-right >
+               <img  class="userAvatar" *ngIf="affiliateUser.avatar.indexOf('firebasestorage')== -1" src="assets/imgs/avatar-icon.png">
+                <img class="userAvatar"  *ngIf="affiliateUser.avatar.indexOf('firebasestorage')!= -1" [src]="affiliateUser.avatar">
+              </ion-avatar>
+              <h2 item-title >{{ affiliateUser.firstName }}</h2>
+            </ion-item>
+          <ion-row>
+            <ion-col offset-6 col-6>
+                <button ion-button text-right  *ngIf="!affiliateUserLogged" full class="mg-top-20"  (click)="Skip()" round>
+                    <span class="eggshell">Skip</span>
+                  </button>
+            </ion-col>
+          </ion-row>
+        
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="show === 'signup-2'" class="posRelative">
+      <!-- <span class="eggshell sectionHeader">What should<br>we call you?</span> -->
+      <!-- INPUTS -->
+      <div class="mg-top-40">
+        <!-- FIRST NAME -->
+        <div>
+          <span class="eggshell inputLabel uppercase">First name</span>
+          <br>
+          <input type="text" class="inputTxt customInputDark" [(ngModel)]="signupForm.firstName">
+        </div>
+        <!-- LAST NAME -->
+        <div class="mg-top-20">
+          <span class="eggshell inputLabel uppercase">Last name</span>
+          <br>
+          <input type="text" class="inputTxt customInputDark" [(ngModel)]="signupForm.lastName">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="show === 'signup-3'" class="posRelative">
+      <!-- <span class="eggshell sectionHeader">Can we get<br>your email too?</span> -->
+      <!-- INPUTS -->
+      <div class="mg-top-40">
+        <!-- EMAIL -->
+        <div>
+          <span class="eggshell inputLabel uppercase">Email address</span>
+          <br>
+          <input type="email" class="inputTxt customInputDark" [(ngModel)]="signupForm.email">
+        </div>
+      </div>
+    </div>
+
+    <div *ngIf="show === 'signup-4'" class="posRelative">
+      <!-- <span class="eggshell sectionHeader">Insert dope<br>password here</span> -->
+      <!-- INPUTS -->
+      <div class="mg-top-40">
+        <!-- PASSWORD -->
+        <div>
+          <span class="eggshell inputLabel uppercase">Password</span>
+          <br>
+          <input type="password" class="inputTxt customInputDark" [(ngModel)]="signupForm.password">
+          <p class="eggshell inputLabel mg-top-20">At least 6 characters</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

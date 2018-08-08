@@ -1,0 +1,151 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+    <div class="editBtn" (click)="next()" *ngIf="step > 1 && step < 4">
+      <span class="editTxt bold">NEXT</span>
+    </div>
+
+    <div class="editBtn" (click)="toPay()" *ngIf="step === 4">
+      <span class="editTxt bold">PAY</span>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content>
+  <div class="padding16">
+    <div class="customPadding mg-top-20">
+      <!-- STEP 1 -->
+      <div *ngIf="step === 1">
+        <span class="blue sectionHeader uppercase">STEP 1/4: SELECT DATE</span>
+        <div class="center">
+            <p class="uppercase title3Semibold">{{viewTitle}}</p>
+        </div>
+        <div [ngClass]="calendarLoad ? 'calendarLoading' : ''">
+            <calendar 
+              [eventSource]="eventSource"
+              [calendarMode]="calendar.mode"
+              [currentDate]="calendar.currentDate"
+              [autoSelect]=false
+              (onEventSelected)="onEventSelected($event)"
+              (onTitleChanged)="onViewTitleChanged($event)"
+              (onTimeSelected)="onTimeSelected($event)"
+              step="30" class="calendar">
+            </calendar>
+        </div>
+      </div>
+
+      <!-- STEP 2 -->
+      <div *ngIf="step === 2">
+        <span class="blue sectionHeader uppercase">STEP 2/4: CHECKOUT</span>
+
+        <!-- ADVENTURE TITLE -->
+        <p class="blue title3 mg-top-20 mg-bot-0">{{adventure?.title}}</p>
+        <!-- ADVENTURE DESCRIPTION -->
+        <span class="blue footnote2">{{adventure?.description}}</span>
+
+        <!-- SEPARATOR -->
+        <div class="separator mg-top-40 mg-bot-0"></div>
+
+        <!-- TERMS -->
+        <ion-grid class="no-pad">
+          <ion-row class="no-pad">
+            <ion-col col-6 class="no-pad" style="text-align: left">
+              <p (click)="terms()" class="subheader cinerous">Terms of Service</p>
+            </ion-col>
+
+            <ion-col col-6 class="no-pad" style="text-align: right">
+              <p (click)="cancellation()" class="subheader cinerous">Cancellation Policy</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <!-- STEP 3 -->
+      <div *ngIf="step === 3">
+        <span class="blue sectionHeader uppercase">STEP 3/4: Who will go with you?</span>
+
+        <!-- TRAVELLERS -->
+        <p class="blue title3 mg-top-20 mg-bot-0">Travellers</p>
+        <ion-row *ngFor="let trav of travellers" class="mg-top-20 no-pad">
+          <ion-col col-10 class="no-pad">
+              <span class="blue inputLabel uppercase">{{trav.name}} ({{trav.email}})</span>
+          </ion-col>
+          <ion-col col-2 class="textRight" *ngIf="!trav.id">
+              <ion-icon (click)="remove(trav)" class="cinerous" name="ios-close-circle"></ion-icon>
+          </ion-col>
+        </ion-row>
+
+        <!-- ADD ADVENTURES -->
+        <p class="blue title3 mg-top-40 mg-bot-0">Add traveller</p>
+        <!-- NAME -->
+        <div class="mg-top-20">
+          <span class="blue inputLabel uppercase">Name</span>
+          <br>
+          <input type="text" class="inputTxt customInputLight" [(ngModel)]="trav.name">
+        </div>
+        <!-- AGE -->
+        <div class="mg-top-20">
+          <span class="blue inputLabel uppercase">Age</span>
+          <br>
+          <input type="tel" class="inputTxt customInputLight" [(ngModel)]="trav.age">
+        </div>
+        <!-- EMAIL -->
+        <div class="mg-top-20">
+          <span class="blue inputLabel uppercase">Email</span>
+          <br>
+          <input type="text" class="inputTxt customInputLight" [(ngModel)]="trav.email">
+        </div>
+
+        <!-- BTN -->
+        <button ion-button full class="mg-top-20"  (click)="add()" round>
+          <span class="eggshell">Add</span>
+        </button>
+
+        <!-- AMOUNT AND TRAVELLERS QNT -->
+        <ion-grid class="no-pad mg-top-40">
+          <ion-row class="no-pad">
+            <ion-col col-6 class="no-pad" style="text-align: left">
+              <p class="subheader cinerous">Total: ${{formatPrice(price)}}</p>
+            </ion-col>
+
+            <ion-col col-6 class="no-pad" style="text-align: right">
+              <p (click)="cancellation()" class="subheader cinerous">{{travellers.length}} travellers</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+
+      <!-- STEP 4 -->
+      <div *ngIf="step === 4">
+        <span class="blue sectionHeader uppercase">STEP 4/4: CONFIRM</span>
+
+        <!-- TRAVELLERS -->
+        <p class="blue title3 mg-top-20 mg-bot-0">Travellers</p>
+        <div *ngFor="let trav of travellers" class="mg-top-20">
+          <span class="blue inputLabel uppercase">{{trav.name}} ({{trav.email}})</span>
+        </div>
+
+
+        <!-- SEPARATOR -->
+        <div class="separator mg-top-40 mg-bot-0"></div>
+        <!-- AMOUNT AND TRAVELLERS QNT -->
+        <ion-grid class="no-pad">
+          <ion-row class="no-pad">
+            <ion-col col-6 class="no-pad" style="text-align: left">
+              <p class="subheader cinerous">Total: ${{formatPrice(price)}}</p>
+            </ion-col>
+
+            <ion-col col-6 class="no-pad" style="text-align: right">
+              <p (click)="cancellation()" class="subheader cinerous">{{travellers.length}} travellers</p>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </div>
+    </div>
+  </div>
+</ion-content>

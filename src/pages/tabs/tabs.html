@@ -1,0 +1,7 @@
+<ion-tabs [selectedIndex]="selectTab">
+  <ion-tab [root]="exploreTab" tabTitle="" tabIcon="ios-compass-outline"></ion-tab>
+  <ion-tab [root]="adventuresTab" tabTitle="" tabIcon="ios-calendar-outline"></ion-tab>
+  <ion-tab [root]="inboxTab" tabTitle="" tabIcon="ios-mail-outline"></ion-tab>
+  <ion-tab (ionSelect)="saveds()" tabTitle="" tabIcon="md-heart-outline"></ion-tab>
+  <ion-tab (ionSelect)="profile()" [root]="profileTab" tabTitle="" tabIcon="ios-contact-outline"></ion-tab>
+</ion-tabs>

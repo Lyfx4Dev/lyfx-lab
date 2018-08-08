@@ -1,0 +1,96 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+    <div class="editBtn" (click)="save()">
+      <span class="editTxt bold">SAVE</span>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div>
+
+    <!-- ZIPCODE -->
+    <div class="mg-top-40">
+      <span class="blue inputLabel uppercase">Zipcode</span>
+      <br>
+      <input type="tel" class="inputTxt customInputLight" [(ngModel)]="user.zipCode">
+    </div>
+
+    <!-- PHONE -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">Phone</span>
+      <br>
+      <input type="tel" class="inputTxt customInputLight" [(ngModel)]="user.phone">
+    </div>
+
+    <!-- PASSIONATE -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">What activities are you passionate about?</span>
+      <br>
+      <input type="text" class="inputTxt customInputLight" [(ngModel)]="user.local.passionate">
+    </div>
+
+    <!-- HOW LONG -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">How long have you done these activities?</span>
+      <br>
+      <input type="text" class="inputTxt customInputLight" [(ngModel)]="user.local.howLong">
+      <!-- <p ion-text color="danger" *ngIf="user.local.howLong.length < 5" no-margin>This field is required</p> -->
+    </div>
+
+    <!-- HOW OFTEN -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">How often do you do these activities?</span>
+      <br>
+      <input type="text" class="inputTxt customInputLight" [(ngModel)]="user.local.howOften">
+    </div>
+
+    <!-- MEMORABLE EXPERIENCE -->
+    <!--     <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">What's your most memorable experience doing these activities?</span>
+      <br>
+      <textarea type="text" class="inputTxt customInputLight" [(ngModel)]="user.local.memorableExperience"></textarea>
+    </div> -->
+
+    <!-- GREAT LOCAL -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">Why would you be a great local expert?</span>
+      <br>
+      <textarea type="text" class="inputTxt customInputLight" [(ngModel)]="user.local.greatLocalExpert"></textarea>
+    </div>
+
+    <!-- INSTAGRAM -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">What is your Instagram?</span>
+      <br>
+      <input type="text" class="inputTxt customInputLight" [(ngModel)]="user.instagram"> </div>
+
+    <!-- CERTIFICATE -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">Do you have any certificates?</span>
+      <br>
+      <img style="max-width: 100%" [src]="user.certificate" class="mg-top-10" *ngIf="user.certificate">
+      <button ion-button full (click)="pegarFoto()" class="mg-top-10" round *ngIf="!user.certificate">
+        <span class="eggshell">Upload certificate</span>
+      </button>
+    </div>
+
+    <button ion-button full class="mg-top-40" (click)="save()" round>
+      <span class="eggshell">Save</span>
+    </button>
+
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+  </div>
+</ion-content>

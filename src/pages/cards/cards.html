@@ -1,0 +1,26 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+    <div class="addBtn" (click)="add()">
+        <span class="addTxt bold">NEW</span>
+      </div>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+  <div class="padding16" *ngIf="user">
+    <div class="customPadding mg-top-20">
+      <span class="blue sectionHeader uppercase">The plastic</span>
+
+      <div class="mg-top-20" *ngFor="let card of cards">
+        <span class="blue subheader">**** {{card.cardNumber}}</span>
+        <br>
+        <span class="footnote2 cinerous">{{card.expirationMonth}}/{{card.expirationYear}}</span>
+      </div>
+    </div>
+  </div>
+</ion-content>

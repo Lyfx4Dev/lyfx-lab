@@ -1,0 +1,48 @@
+page-edit-profile {
+    // TOP BUTTONS
+    .backBtn {
+        position: absolute;
+        top: 30px;
+        left: 20px;
+        z-index: 10;
+        color: $eggshell
+    }
+    .iconBack {
+        font-size: 24pt
+    }
+    .backTxt{
+        position: relative;
+        top: -5pt;
+        left: 5px
+    }
+    .editBtn {
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        z-index: 10;
+        color: $eggshell
+    }
+    .editTxt {
+        position: relative;
+        top: 5pt;
+        right: 5px
+    }
+    ion-navbar {
+        height: 80px !important;
+        background: $blue
+    }
+
+    .ownerImage {
+        // margin-left: 10px;
+        width: 128px;
+        height: 128px;
+        background-size: cover;
+        -webkit-clip-path: circle(50% at 50% 50%);
+        // position: absolute;
+        z-index: 2;
+        margin-bottom: 10px
+        // top: 23%;
+        // left: 50%;
+        // margin: 0 0 0 -50px;
+    }
+}

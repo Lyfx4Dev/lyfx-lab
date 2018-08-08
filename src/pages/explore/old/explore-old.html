@@ -1,0 +1,171 @@
+<ion-header>
+  <ion-navbar></ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <!-- REFRESH -->
+  <!-- <ion-refresher (ionRefresh)="refresh($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher> -->
+
+  <!-- SEARCH BAR -->
+  <ion-toolbar class="pad-tool" *ngIf="adventures.length > 0">
+    <div class="footer1 pad-5">
+      <ion-grid style="padding: 0px !important">
+        <ion-row>
+          <ion-col col-1 class="pad-0">
+            <ion-icon style="margin-top: 5px" name="search" class="gray send"></ion-icon>
+          </ion-col>
+
+          <ion-col col-11 class="pad-0">
+            <form (ngSubmit)="search()">
+              <ion-input clearInput type="text" [(ngModel)]="inp" name="inp" class="blue" placeholder="Try Colorado or Hiking"></ion-input>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-toolbar>
+
+  <!-- TAGS -->
+  <div class="containerTags customPaddingTags" *ngIf="adventures.length > 0">
+    <div class="tag uppercase" *ngFor="let tag of tags; let i = index" [ngClass]="i > 0 ? 'mg-left-10' : ''" (click)="openFilter(tag.name)">
+      {{tag.name}}
+    </div>
+  </div>
+
+  <!-- HEADER -->
+  <div class="customPadding mg-top-10" *ngIf="adventures.length > 0">
+    <!-- <span class="blue sectionHeader uppercase">{{header}}</span> -->
+    <span class="headerCustomSize cinerous uppercase">{{header}}</span>
+    
+  </div>
+
+
+  <ion-grid id="container" [@listAnimation]="adventures.length" class="customMgRow">
+    <!-- CARDS -->
+    <ion-row>
+      <ion-col col-5 (tap)="openAdventure(adventure)" id="card" *ngFor="let adventure of adventures; let i = index" class="mg-top-10"
+        [ngClass]="i%2 === 0 ? '' : 'mg-left-2-5-percent'">
+        <ion-card class="adventureCard" [ngStyle]="{ 'background-image': 'url(' + adventure.gallery[0].image + ')'}">
+        </ion-card>
+        <!-- LOCATION -->
+        <div class="mg-top-5">
+          <p class="uppercase locationLabel cinerous mg-top-0 mg-bot-0 dispInline" style="overflow: hidden;">
+            {{adventure.adventures}} ·
+          </p>
+          <p class="locationLabel uppercase blue oneLineTxt mg-top-0 mg-bot-0 dispInline">
+            {{adventure.destinyCity}} - {{adventure.destinyState}}
+          </p>
+        </div>
+
+        <p class="titleLabel blue capitalize mg-bot-0 twoLinesTxt mg-top--2">
+          {{adventure.title}}
+        </p>
+
+
+        <!-- PRICE -->
+        <p class="priceLabel cinerous mg-top-2 mg-bot-0">
+          ${{formatPrice(adventure.price)}} p/ person
+        </p>
+
+        <!-- IF 0 RATINGS -->
+        <div class="mg-top--3" *ngIf="!adventure.score">
+          <!-- RATINGS -->
+          <span>
+            <span>
+              <img class="starIcon" src="assets/imgs/star-outline.png">
+            </span>
+            <span class="mg--2">
+              <img class="starIcon" src="assets/imgs/star-outline.png">
+            </span>
+            <span class="mg--2">
+              <img class="starIcon" src="assets/imgs/star-outline.png">
+            </span>
+            <span class="mg--2">
+              <img class="starIcon" src="assets/imgs/star-outline.png">
+            </span>
+            <span class="mg--2">
+              <img class="starIcon" src="assets/imgs/star-outline.png">
+            </span>
+          </span>
+          <span class="blue specialChar">
+            ·
+          </span>
+          <span class="blue uppercase categorieLabel">
+            <!-- {{adventure.adventures}} -->
+            New adventure
+          </span>
+        </div>
+
+
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <!-- LOTTIE ANIMATION LOADING -->
+  <div style="margin-top: 70%" *ngIf="!loadingComplete && first">
+    <lottie-animation-view [options]="lottieConfig" [width]="70" [height]="70">
+    </lottie-animation-view>
+  </div>
+  <div class="mg-top-40" *ngIf="!loadingComplete && !first">
+    <lottie-animation-view [options]="lottieConfig" [width]="70" [height]="70">
+    </lottie-animation-view>
+  </div>
+
+  <!-- INFINITE SCROLL -->
+  <ion-infinite-scroll (ionInfinite)="doInfinite($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+  <!-- <ion-grid class="mg-top-10 mg-bot-10">
+    <ion-row>
+      <ion-col col-6>
+      </ion-col>
+      <ion-col col->
+        <div class="btnShowAll" (click)="showMore()">
+          Show more
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid> -->
+
+  <!-- CATEGORIES -->
+  <!-- <div class="customPadding">
+    <span class="blue sectionHeader">EXPLORE LYFX</span>
+  </div>
+
+  <ion-grid id="container" [@listAnimation]="categories.length">
+      <ion-row>
+          <ion-col (click)="openFilter(categorie.name)" col-5  id="card" *ngFor="let categorie of categories; let i = index" class="mg-top-10" [ngClass]="i%2 === 0 ? '' : 'mg-left-5-percent'">
+              <ion-card class="adventureCard" [ngStyle]="{ 'background-image': 'url(' + categorie.cover + ')'}"> 
+              <div class="wrapper2">
+                 <div class='cat'>
+                      <p class='categorieTitle capitalize title3'>{{categorie.name}}</p>
+                  </div>
+                  <div class="overlay"></div>
+              </div>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>  -->
+</ion-content>
+
+<!-- <ion-footer style="background: none !important; border: none !important">
+  <ion-toolbar class="pad-tool">
+    <div class="footer1 pad-5">
+      <ion-grid style="padding: 0px !important">
+        <ion-row>
+          <ion-col col-1 class="pad-0">
+            <ion-icon style="margin-top: 5px" name="search" class="gray send"></ion-icon>
+          </ion-col>
+
+          <ion-col col-11 class="pad-0">
+            <form (ngSubmit)="search()">
+              <ion-input clearInput type="text" [(ngModel)]="inp" name="inp" class="blue" placeholder="Try Colorado or Utah"></ion-input>
+            </form>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </div>
+  </ion-toolbar>
+</ion-footer> -->

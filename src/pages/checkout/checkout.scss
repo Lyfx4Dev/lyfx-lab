@@ -1,0 +1,166 @@
+page-checkout {
+    // TOP BUTTONS
+    .backBtn {
+        position: absolute;
+        top: 30px;
+        left: 20px;
+        z-index: 10;
+        color: $eggshell
+    }
+    .iconBack {
+        font-size: 24pt
+    }
+    .backTxt{
+        position: relative;
+        top: -5pt;
+        left: 5px
+    }
+    .editBtn {
+        position: absolute;
+        top: 30px;
+        right: 20px;
+        z-index: 10;
+        color: $eggshell
+    }
+    .editTxt {
+        position: relative;
+        top: 5pt;
+        right: 5px
+    }
+    ion-navbar {
+        height: 80px !important;
+        background: $blue 
+    }
+
+    .separator {
+        height: 1px;
+        background-color: $cinerous
+    }
+
+    //Calendar style
+    .table-bordered {
+        border: none !important
+    }
+    table {
+        margin-top: 40px
+    }
+    td {
+        border: none !important;
+        font-family: 'Open Sans', sans-serif;
+        font-size: 10pt;
+        font-weight: 500;
+    }
+    th {
+        border: none
+    }
+    .table-bordered > thead > tr > th {
+        border: none !important
+    }
+    .table {
+        border-collapse: separate !important
+    }
+    th > small {
+        font-family: 'Open Sans', sans-serif;
+        font-size: 8pt;
+        text-transform: uppercase;
+        font-weight: 500
+    }
+    .monthview-secondary-with-event {
+        background-color: transparent !important
+    }
+    .monthview-primary-with-event {
+        background-color: transparent !important;
+        color: #000 !important
+    }
+    .monthview-selected {
+        background-color: transparent !important;
+        color: #000 !important
+    }
+    .monthview-current {
+        background-color: transparent !important
+    }
+    .table > tbody > tr > td{
+        line-height: 40px !important
+    }
+    .event-detail-container {
+        display: none
+    }
+    .monthview-current {
+        color: $teal !important;
+        // border: 2px solid #000 !important;
+        // border-radius: 100px;
+    }
+    .withoutAvailabity {
+        color: #999 !important
+    }
+    .monthview-container {
+        height: 350px !important
+    }
+    //Hide days of another months
+    .text-muted {
+        color: transparent !important
+    }
+
+    //CALENDAR LOADING
+    .lds-ring {
+        display: inline-block;
+        position: relative;
+        width: 64px;
+        height: 64px;
+    }
+    .lds-ring div {
+        box-sizing: border-box;
+        display: block;
+        position: absolute;
+        width: 51px;
+        height: 51px;
+        margin: 6px;
+        border: 6px solid #fff;
+        border-radius: 50%;
+        animation: lds-ring 1.2s cubic-bezier(0.5, 0, 0.5, 1) infinite;
+        border-color: #fff transparent transparent transparent;
+    }
+    .lds-ring div:nth-child(1) {
+        animation-delay: -0.45s;
+    }
+    .lds-ring div:nth-child(2) {
+        animation-delay: -0.3s;
+    }
+    .lds-ring div:nth-child(3) {
+        animation-delay: -0.15s;
+    }
+    @keyframes lds-ring {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+    @keyframes flickerAnimation {
+        0%   { opacity:0.5; }
+        50%  { opacity:0; }
+        100% { opacity:0.5; }
+    }
+    @-o-keyframes flickerAnimation{
+        0%   { opacity:0.5; }
+        50%  { opacity:0; }
+        100% { opacity:1; }
+    }
+    @-moz-keyframes flickerAnimation{
+        0%   { opacity:0.5; }
+        50%  { opacity:0; }
+        100% { opacity:0.5; }
+    }
+    @-webkit-keyframes flickerAnimation{
+        0%   { opacity:0.5; }
+        50%  { opacity:0; }
+        100% { opacity:0.5; }
+    }
+    .calendarLoading {
+        -webkit-animation: flickerAnimation 1.5s infinite;
+        -moz-animation: flickerAnimation 1.5s infinite;
+        -o-animation: flickerAnimation 1.5s infinite;
+        animation: flickerAnimation 1.5s infinite;
+    }
+}

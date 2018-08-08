@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar>
+    <!-- BTNS -->
+    <div class="backBtn" (click)="back()">
+      <ion-icon class="iconBack" name="ios-arrow-back"></ion-icon>
+      <span class="backTxt bold">BACK</span>
+    </div>
+    <div class="editBtn" (click)="save()">
+      <span class="editTxt bold">SAVE</span>
+    </div>
+  </ion-navbar>
+</ion-header>
+
+
+<ion-content padding>
+  <div>
+
+    <!-- CARD NUMBER -->
+    <div class="mg-top-40">
+      <span class="blue inputLabel uppercase">Card number</span>
+      <br>
+      <input type="tel" class="inputTxt customInputLight" [(ngModel)]="card.number" placeholder="xxx xxx xxx xxx" [textMask]="{mask: masks.cardNumber}">
+    </div>
+
+    <!-- EXP MONTH -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">Expiration month</span>
+      <br>
+      <input type="tel" class="inputTxt customInputLight" [(ngModel)]="card.expMonth" placeholder="xx" maxlength="2">
+    </div>
+
+    <!-- EXP YEAR -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">Expiration year</span>
+      <br>
+      <input type="tel" class="inputTxt customInputLight" [(ngModel)]="card.expYear" placeholder="xxxx" maxlength="4"> 
+    </div>
+
+    <!-- CVC -->
+    <div class="mg-top-20">
+      <span class="blue inputLabel uppercase">CVC</span>
+      <br>
+      <input type="tel" class="inputTxt customInputLight" [(ngModel)]="card.cvc"  maxlength="3" placeholder="xxx">
+    </div>
+
+  </div>
+</ion-content>
